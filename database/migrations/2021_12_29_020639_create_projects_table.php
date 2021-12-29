@@ -19,6 +19,11 @@ class CreateProjectsTable extends Migration
             $table->string('description');
             $table->string('department');
             $table->string('location');
+            $table->datetime('deadline');
+            $table->string('officer')->comment('officer name');
+            $table->datetime('training_start')->nullable();
+            $table->datetime('training_end')->nullable();
+            $table->string('register_details')->nullable();
             $table->enum('result', ['processed', 'processing', 'unprocessed'])->default('unprocessed');
             $table->string('kpi')->comment('ตัวชี้วัด');
             $table->string('kpi_unit')->comment('ร้อยละของผลการดำเนินงาน');
