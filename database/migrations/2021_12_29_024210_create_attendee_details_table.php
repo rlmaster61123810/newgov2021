@@ -18,8 +18,7 @@ class CreateAttendeeDetailsTable extends Migration
             // attendee
             $table->unsignedBigInteger('attendee_id');
             $table->foreign('attendee_id')->references('id')->on('attendees')->onDelete('cascade');
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('fullname');
             $table->string('phone');
             $table->enum('is_halal', ['yes', 'no'])->default('no');
             $table->timestamps();
