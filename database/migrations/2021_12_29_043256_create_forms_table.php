@@ -18,7 +18,6 @@ class CreateFormsTable extends Migration
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->unsignedBigInteger('community_id');
-            $table->foreign('community_id')->references('id')->on('communities');
             $table->string('auditor_name');
             $table->string('auditor_position');
             $table->string('auditor_phone');

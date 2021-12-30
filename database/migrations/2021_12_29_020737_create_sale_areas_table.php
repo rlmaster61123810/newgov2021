@@ -15,6 +15,10 @@ class CreateSaleAreasTable extends Migration
     {
         Schema::create('sale_areas', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('location');
+            $table->string('size');
+            $table->float('price');
             $table->timestamps();
         });
     }

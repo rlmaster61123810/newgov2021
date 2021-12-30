@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            // application
             $table->unsignedBigInteger('application_id');
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
             $table->string('product_name');

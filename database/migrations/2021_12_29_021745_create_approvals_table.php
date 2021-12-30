@@ -15,6 +15,13 @@ class CreateApprovalsTable extends Migration
     {
         Schema::create('approvals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('application_id');
+            $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('sale_area_id');
+            $table->foreign('sale_area_id')->references('id')->on('sale_areas')->onDelete('cascade');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
