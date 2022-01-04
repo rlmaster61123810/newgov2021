@@ -7,80 +7,83 @@ use Illuminate\Http\Request;
 
 class SaleAreaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $sale_areas = SaleArea::all();
         return view('sale_areas.index', ['sale_areas' => $sale_areas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('sale_areas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        // validate
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'size' => 'required',
+            'price' => 'required',
+        ]);
+
+        // store
+        $sale_area = new SaleArea();
+        $sale_area->name = $request->name;
+        $sale_area->location = $request->location;
+        $sale_area->size = $request->size;
+        $sale_area->price = $request->price;
+        $sale_area->save();
+
+        // redirect
+        return redirect('/sale_areas')->with('success', 'Sale Area created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $sale_area = SaleArea::find($id);
+        return view('sale_areas.show', ['sale_area' => $sale_area]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $sale_area = SaleArea::find($id);
+        return view('sale_areas.edit', ['sale_area' => $sale_area]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        // validate
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'size' => 'required',
+            'price' => 'required',
+        ]);
+
+        // update
+        $sale_area = SaleArea::find($id);
+        $sale_area->name = $request->name;
+        $sale_area->location = $request->location;
+        $sale_area->size = $request->size;
+        $sale_area->price = $request->price;
+        $sale_area->save();
+
+        // redirect
+        return redirect('/sale_areas');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $sale_area = SaleArea::find($id);
+        $sale_area->delete();
+        return redirect('/sale_areas');
     }
 }
