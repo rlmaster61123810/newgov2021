@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SaleArea extends Model
 {
     use HasFactory;
+
+    // approvals
+    public function approvals()
+    {
+        return $this->hasMany('App\Models\Approval');
+    }
 }

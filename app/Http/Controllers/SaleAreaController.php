@@ -77,7 +77,7 @@ class SaleAreaController extends Controller
         $sale_area->save();
 
         // redirect
-        return redirect('/sale_areas');
+        return redirect('/sale_areas')->with('success', 'Sale Area updated successfully');
     }
 
     public function destroy($id)

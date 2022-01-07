@@ -28,8 +28,9 @@ Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'des
 
 // login
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login.submit');
-Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
 
 // resource sale_area
 Route::get('/sale_areas', [App\Http\Controllers\SaleAreaController::class, 'index'])->name('sale_areas.index');
@@ -39,6 +40,27 @@ Route::get('/sale_areas/{sale_area}', [App\Http\Controllers\SaleAreaController::
 Route::get('/sale_areas/{sale_area}/edit', [App\Http\Controllers\SaleAreaController::class, 'edit'])->name('sale_areas.edit');
 Route::put('/sale_areas/{sale_area}', [App\Http\Controllers\SaleAreaController::class, 'update'])->name('sale_areas.update');
 Route::delete('/sale_areas/{sale_area}', [App\Http\Controllers\SaleAreaController::class, 'destroy'])->name('sale_areas.destroy');
+
+// resource project
+Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('projects.create');
+Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'])->name('projects.store');
+Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show');
+Route::get('/projects/{project}/edit', [App\Http\Controllers\ProjectController::class, 'edit'])->name('projects.edit');
+Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update');
+Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy');
+
+// resource application
+Route::get('/applications', [App\Http\Controllers\ApplicationController::class, 'index'])->name('applications.index');
+Route::get('/applications/create', [App\Http\Controllers\ApplicationController::class, 'create'])->name('applications.create');
+Route::post('/applications', [App\Http\Controllers\ApplicationController::class, 'store'])->name('applications.store');
+Route::get('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'show'])->name('applications.show');
+Route::get('/applications/{application}/edit', [App\Http\Controllers\ApplicationController::class, 'edit'])->name('applications.edit');
+Route::put('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'update'])->name('applications.update');
+Route::delete('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'destroy'])->name('applications.destroy');
+
+
+
 
 
 // home

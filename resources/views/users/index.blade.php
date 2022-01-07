@@ -21,22 +21,22 @@
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
-                                        ID
+                                        ที่
                                     </th>
                                     <th>
-                                        Name
+                                        ชื่อผู้ใช้งาน
                                     </th>
                                     <th>
-                                        Position
+                                        ตำแหน่ง
                                     </th>
                                     <th>
                                         Email
                                     </th>
                                     <th>
-                                        Role
+                                        สถานะ
                                     </th>
                                     <th>
-                                        Action
+                                        จัดการข้อมูล
                                     </th>
                                 </thead>
                                 <tbody>

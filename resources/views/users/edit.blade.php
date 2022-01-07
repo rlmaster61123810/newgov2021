@@ -6,7 +6,7 @@
             {{-- breadscrumb --}}
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าแรก</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/home') }}">หน้าแรก</a></li>
                     <li class="breadcrumb-item"><a href="{{ url('/users') }}">ผู้ใช้งาน</a></li>
                     <li class="breadcrumb-item active">แก้ไข</li>
                 </ol>
