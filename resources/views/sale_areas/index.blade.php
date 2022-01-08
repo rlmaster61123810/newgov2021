@@ -60,14 +60,14 @@
                                                         <td>{{ $sale_area->price }}</td>
                                                         <td>
                                                             <a href="{{ route('sale_areas.edit', $sale_area->id) }}"
-                                                                class="btn btn-primary btn-sm">Edit</a>
+                                                                class="btn btn-primary btn-sm">แก้ไข</a>
                                                             <form
                                                                 action="{{ route('sale_areas.destroy', $sale_area->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    class="btn btn-danger btn-sm">Delete</button>
+                                                                    class="btn btn-danger btn-sm">ลบ</button>
                                                             </form>
                                                         </td>
                                                     </tr>

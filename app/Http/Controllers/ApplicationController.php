@@ -7,131 +7,153 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    // index Application
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    // index
     public function index()
     {
         $applications = Application::all();
         return view('applications.index', ['applications' => $applications]);
     }
-    // create Application
+    // create
     public function create()
     {
         return view('applications.create');
     }
-    // store Application
+    // store
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'department' => 'required',
-            'location' => 'required',
-            'deadline' => 'required',
-            'officer' => 'required',
-            'training_start' => 'required',
-            'training_end' => 'required',
-            'register_details' => 'required',
-            'result' => 'required',
-            'kpi' => 'required',
-            'kpi_unit' => 'required',
-            'budget' => 'required',
-            'disbursement' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'comment' => 'required',
-            'attachment' => 'required',
+            'has_idcard' => 'required',
+            'has_house_registration' => 'required',
+            'has_document' => 'required',
+            'group_name' => 'required',
+            'product_type' => 'required',
+            'reason' => 'required',
+            'fullname' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'shop_address' => 'required',
+            'shop_name' => 'required',
+            //attachment max size 100mb
+            'attachment' => 'max:100000'
         ]);
 
+        $fileName = '';
+
+        // if has attachment
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $fileName = $file->getClientOriginalName();
+            // regex to remove special characters and spaces
+            $fileName = preg_replace('/\s+/', '', $fileName);
+            // random file name
+            $fileName = time() . '-' . $fileName;
+            // upload file
+            $file->move(public_path('/uploads'), $fileName);
+        }
+
         $application = new Application();
-        $application->name = $request->name;
-        $application->description = $request->description;
-        $application->department = $request->department;
-        $application->location = $request->location;
-        $application->deadline = $request->deadline;
-        $application->officer = $request->officer;
-        $application->training_start = $request->training_start;
-        $application->training_end = $request->training_end;
-        $application->register_details = $request->register_details;
-        $application->result = $request->result;
-        $application->kpi = $request->kpi;
-        $application->kpi_unit = $request->kpi_unit;
-        $application->budget = $request->budget;
-        $application->disbursement = $request->disbursement;
-        $application->start_date = $request->start_date;
-        $application->end_date = $request->end_date;
-        $application->comment = $request->comment;
-        $application->attachment = $request->attachment;
+        $application->has_idcard = $request->has_idcard;
+        $application->has_house_registration = $request->has_house_registration;
+        $application->has_document = $request->has_document;
+        $application->group_name = $request->group_name;
+        $application->product_type = $request->product_type;
+        $application->reason = $request->reason;
+        $application->fullname = $request->fullname;
+        $application->address = $request->address;
+        $application->phone = $request->phone;
+        $application->shop_address = $request->shop_address;
+        $application->shop_name = $request->shop_name;
+        $application->attachment = $fileName;
         $application->save();
 
-        return redirect('/applications');
+        return redirect('/applications')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
-    // show Application
+    // show
     public function show($id)
     {
         $application = Application::find($id);
         return view('applications.show', ['application' => $application]);
     }
-    // edit Application
+    // edit
     public function edit($id)
     {
         $application = Application::find($id);
         return view('applications.edit', ['application' => $application]);
     }
-    // update Application
+    // update
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'department' => 'required',
-            'location' => 'required',
-            'deadline' => 'required',
-            'officer' => 'required',
-            'training_start' => 'required',
-            'training_end' => 'required',
-            'register_details' => 'required',
-            'result' => 'required',
-            'kpi' => 'required',
-            'kpi_unit' => 'required',
-            'budget' => 'required',
-            'disbursement' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'comment' => 'required',
-            'attachment' => 'required',
+            'has_idcard' => 'required',
+            'has_house_registration' => 'required',
+            'has_document' => 'required',
+            'group_name' => 'required',
+            'product_type' => 'required',
+            'reason' => 'required',
+            'fullname' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'shop_address' => 'required',
+            'shop_name' => 'required',
+            //attachment max size 100mb
+            'attachment' => 'max:100000'
         ]);
 
         $application = Application::find($id);
-        $application->name = $request->name;
-        $application->description = $request->description;
-        $application->department = $request->department;
-        $application->location = $request->location;
-        $application->deadline = $request->deadline;
-        $application->officer = $request->officer;
-        $application->training_start = $request->training_start;
-        $application->training_end = $request->training_end;
-        $application->register_details = $request->register_details;
-        $application->result = $request->result;
-        $application->kpi = $request->kpi;
-        $application->kpi_unit = $request->kpi_unit;
-        $application->budget = $request->budget;
-        $application->disbursement = $request->disbursement;
-        $application->start_date = $request->start_date;
-        $application->end_date = $request->end_date;
-        $application->comment = $request->comment;
-        $application->attachment = $request->attachment;
-        $application->save();
 
-        return redirect('/applications');
+        $fileName = '';
+
+        // if has attachment
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $fileName = $file->getClientOriginalName();
+            // regex to remove special characters and spaces
+            $fileName = preg_replace('/\s+/', '', $fileName);
+            // random file name
+            $fileName = time() . '-' . $fileName;
+            // upload file
+            $file->move(public_path('/uploads'), $fileName);
+        }
+
+        $application = Application::find($id);
+        $application->has_idcard = $request->has_idcard;
+        $application->has_house_registration = $request->has_house_registration;
+        $application->has_document = $request->has_document;
+        $application->group_name = $request->group_name;
+        $application->product_type = $request->product_type;
+        $application->reason = $request->reason;
+        $application->fullname = $request->fullname;
+        $application->address = $request->address;
+        $application->phone = $request->phone;
+        $application->shop_address = $request->shop_address;
+        $application->shop_name = $request->shop_name;
+        $application->attachment = $fileName;
+        $application->save();
+        // redirect
+        return redirect('/applications')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
-    // destroy Application
+    // delete attachment
+    public function deleteAttachment($id)
+    {
+        $application = Application::find($id);
+        $fileName = $application->attachment;
+        $filePath = public_path('/uploads/' . $fileName);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        $application->attachment = '';
+        $application->save();
+        return redirect('/applications/' . $id)->with('success', 'ลบไฟล์เรียบร้อย');
+    }
+    // delete
     public function destroy($id)
     {
         $application = Application::find($id);
         $application->delete();
-        return redirect('/applications');
+        return redirect('/applications')->with('success', 'ลบข้อมูลเรียบร้อย');
     }
-
-
-
 }

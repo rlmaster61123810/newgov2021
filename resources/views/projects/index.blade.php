@@ -42,6 +42,9 @@
                                                         สถานที่
                                                     </th>
                                                     <th>
+                                                        สถานะผลการอบรม
+                                                    </th>
+                                                    <th>
                                                         จัดการข้อมูล
                                                     </th>
                                                 </tr>
@@ -52,23 +55,27 @@
                                                         <td>{{ $project->name }}</td>
                                                         <td>{{ $project->department }}</td>
                                                         <td>{{ $project->location }}</td>
-                                                        <td>{{ $project->created_at }}</td>
-                                                        <td>{{ $project->updated_at }}</td>
-                                                        <td>{{ $project->deleted_at }}</td>
                                                         <td>
-                                                            @if ($project->status == 1)
-                                                                <span class="badge badge-success">เปิดใช้งาน</span>
-                                                            @else
-                                                                <span class="badge badge-danger">ปิดใช้งาน</span>
+                                                            @if ($project->result == 'processed')
+                                                                <span class="badge badge-success">อบรมเสร็จสมบูรณ์</span>
+                                                            @elseif($project->result == 'processing')
+                                                                <span
+                                                                    class="badge badge-warning">อบรมยังไม่เสร็จสมบูรณ์</span>
+                                                            @elseif($project->result == 'unprocessed')
+                                                                <span class="badge badge-danger">ยังไม่อบรม</span>
                                                             @endif
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('projects.edit', $project->id) }}"
-                                                                class="btn btn-warning">แก้ไข</a>
-                                                            <a href="{{ route('projects.destroy', $project->id) }}"
-                                                                class="btn btn-danger">
-                                                                ลบ
-                                                            </a>
+                                                                class="btn btn-primary btn-sm">แก้ไข</a>
+                                                            <form action="{{ route('projects.destroy', $project->id) }}"
+                                                                method="POST" class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
+                                                                    class="btn btn-danger btn-sm">ลบ</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

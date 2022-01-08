@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// redirect / to login
+Route::get('/', function () {
+    return redirect('login');
+});
+
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
 Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
@@ -49,6 +54,8 @@ Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class
 Route::get('/projects/{project}/edit', [App\Http\Controllers\ProjectController::class, 'edit'])->name('projects.edit');
 Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy');
+// delete attachment form  <a href="{{ route('project.destroyAttachment', $project->id) }}" class="btn btn-danger btn-sm">ลบ</a>
+Route::get('/projects/{project}/destroyAttachment', [App\Http\Controllers\ProjectController::class, 'destroyAttachment'])->name('projects.destroyAttachment');
 
 // resource application
 Route::get('/applications', [App\Http\Controllers\ApplicationController::class, 'index'])->name('applications.index');
@@ -63,7 +70,6 @@ Route::delete('/applications/{application}', [App\Http\Controllers\ApplicationCo
 
 
 
+
 // home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-

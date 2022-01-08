@@ -2,23 +2,23 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('sale_areas.index') }}">Sale Areas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Sale Area</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('sale_areas.index') }}">พื้นที่ขาย</a></li>
+            <li class="breadcrumb-item active" aria-current="page">แก้ไขพื้นที่ขาย</li>
         </ol>
     </nav>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Edit Sale Area</h5>
+                    <h5 class="card-title">แก้ไขพื้นที่ขาย</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('sale_areas.update', $sale_area->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">ชื่อผู้ประกอบการ</label>
                             <input type="text" class="form-control" id="name" name="name"
                                 value="{{ $sale_area->name }}">
                             @error('name')
@@ -27,7 +27,7 @@
                         </div>
                         {{-- location input string --}}
                         <div class="form-group">
-                            <label for="location">Location</label>
+                            <label for="location">สถานที่ขาย</label>
                             <input type="text" class="form-control" id="location" name="location"
                                 value="{{ $sale_area->location }}">
                             @error('location')
@@ -36,7 +36,7 @@
                         </div>
                         {{-- size --}}
                         <div class="form-group">
-                            <label for="size">Size</label>
+                            <label for="size">ขนาดพื้นที่ขาย</label>
                             <input type="text" class="form-control" id="size" name="size"
                                 value="{{ $sale_area->size }}">
                             @error('size')
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="price">Price</label>
+                            <label for="price">ราคาเช่าพื้นที่</label>
                             <input type="text" class="form-control" id="price" name="price"
                                 value="{{ $sale_area->price }}">
                             @error('price')
@@ -53,7 +53,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">สร้างพื้นที่ขาย</button>
                     </form>
                 </div>
             </div>
