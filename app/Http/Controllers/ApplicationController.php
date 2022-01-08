@@ -96,13 +96,17 @@ class ApplicationController extends Controller
             'has_idcard' => 'required',
             'has_house_registration' => 'required',
             'has_document' => 'required',
-            'reason' => 'required',
+            'group_name' => 'required_if:has_toggle,0',
+            'product_type' => 'required',
+            'reason' => 'required_if:has_produc_type,OTHER',
             'fullname' => 'required',
             'address' => 'required',
             'phone' => 'required',
             'shop_address' => 'required',
             'shop_name' => 'required',
+            'products.*' => 'required',
         ]);
+
         $application->has_idcard = $request->has_idcard;
         $application->has_house_registration = $request->has_house_registration;
         $application->has_document = $request->has_document;
@@ -115,8 +119,18 @@ class ApplicationController extends Controller
         $application->shop_address = $request->shop_address;
         $application->shop_name = $request->shop_name;
         $application->save();
+
+        $products = $request->products;
+        foreach ($products as $product) {
+            $application->products()->insert([
+                'application_id' => $application->id,
+                'name' => $product,
+            ]);
+        }
+
         return redirect()->route('applications.index');
     }
+
     // destroy
     public function destroy(Application $application)
     {

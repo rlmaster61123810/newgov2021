@@ -71,5 +71,7 @@ Route::delete('/applications/{application}', [App\Http\Controllers\ApplicationCo
 
 
 
+
+
 // home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
