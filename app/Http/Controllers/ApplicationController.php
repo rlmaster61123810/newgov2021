@@ -29,31 +29,16 @@ class ApplicationController extends Controller
             'has_idcard' => 'required',
             'has_house_registration' => 'required',
             'has_document' => 'required',
-            'group_name' => 'required',
+            'group_name' => 'required_if:has_toggle,0',
             'product_type' => 'required',
-            'reason' => 'required',
+            'reason' => 'required_if:has_produc_type,OTHER',
             'fullname' => 'required',
             'address' => 'required',
             'phone' => 'required',
             'shop_address' => 'required',
             'shop_name' => 'required',
-            //attachment max size 100mb
-            'attachment' => 'max:100000'
+            'products.*' => 'required',
         ]);
-
-        $fileName = '';
-
-        // if has attachment
-        if ($request->hasFile('attachment')) {
-            $file = $request->file('attachment');
-            $fileName = $file->getClientOriginalName();
-            // regex to remove special characters and spaces
-            $fileName = preg_replace('/\s+/', '', $fileName);
-            // random file name
-            $fileName = time() . '-' . $fileName;
-            // upload file
-            $file->move(public_path('/uploads'), $fileName);
-        }
 
         $application = new Application();
         $application->has_idcard = $request->has_idcard;
@@ -67,59 +52,57 @@ class ApplicationController extends Controller
         $application->phone = $request->phone;
         $application->shop_address = $request->shop_address;
         $application->shop_name = $request->shop_name;
-        $application->attachment = $fileName;
         $application->save();
 
-        return redirect('/applications')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+
+        $products = $request->products;
+        foreach ($products as $product) {
+            $application->products()->insert([
+                'application_id' => $application->id,
+                'name' => $product,
+            ]);
+        }
+
+        return redirect()->route('applications.index');
     }
-    // show
-    public function show($id)
+
+    // checkbox has_idcard , has_house_registration ,has_document
+    public function checkbox(Request $request)
     {
-        $application = Application::find($id);
+        $application = Application::find($request->id);
+        $application->has_idcard = $request->has_idcard;
+        $application->has_house_registration = $request->has_house_registration;
+        $application->has_document = $request->has_document;
+        $application->save();
+        return redirect()->route('applications.index');
+    }
+
+
+
+    // show
+    public function show(Application $application)
+    {
         return view('applications.show', ['application' => $application]);
     }
     // edit
-    public function edit($id)
+    public function edit(Application $application)
     {
-        $application = Application::find($id);
         return view('applications.edit', ['application' => $application]);
     }
     // update
-    public function update(Request $request, $id)
+    public function update(Request $request, Application $application)
     {
         $request->validate([
             'has_idcard' => 'required',
             'has_house_registration' => 'required',
             'has_document' => 'required',
-            'group_name' => 'required',
-            'product_type' => 'required',
             'reason' => 'required',
             'fullname' => 'required',
             'address' => 'required',
             'phone' => 'required',
             'shop_address' => 'required',
             'shop_name' => 'required',
-            //attachment max size 100mb
-            'attachment' => 'max:100000'
         ]);
-
-        $application = Application::find($id);
-
-        $fileName = '';
-
-        // if has attachment
-        if ($request->hasFile('attachment')) {
-            $file = $request->file('attachment');
-            $fileName = $file->getClientOriginalName();
-            // regex to remove special characters and spaces
-            $fileName = preg_replace('/\s+/', '', $fileName);
-            // random file name
-            $fileName = time() . '-' . $fileName;
-            // upload file
-            $file->move(public_path('/uploads'), $fileName);
-        }
-
-        $application = Application::find($id);
         $application->has_idcard = $request->has_idcard;
         $application->has_house_registration = $request->has_house_registration;
         $application->has_document = $request->has_document;
@@ -131,29 +114,13 @@ class ApplicationController extends Controller
         $application->phone = $request->phone;
         $application->shop_address = $request->shop_address;
         $application->shop_name = $request->shop_name;
-        $application->attachment = $fileName;
         $application->save();
-        // redirect
-        return redirect('/applications')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+        return redirect()->route('applications.index');
     }
-    // delete attachment
-    public function deleteAttachment($id)
+    // destroy
+    public function destroy(Application $application)
     {
-        $application = Application::find($id);
-        $fileName = $application->attachment;
-        $filePath = public_path('/uploads/' . $fileName);
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        }
-        $application->attachment = '';
-        $application->save();
-        return redirect('/applications/' . $id)->with('success', 'ลบไฟล์เรียบร้อย');
-    }
-    // delete
-    public function destroy($id)
-    {
-        $application = Application::find($id);
         $application->delete();
-        return redirect('/applications')->with('success', 'ลบข้อมูลเรียบร้อย');
+        return redirect()->route('applications.index');
     }
 }

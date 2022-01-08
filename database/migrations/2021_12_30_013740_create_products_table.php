@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('application_id');
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
-            $table->string('product_name');
+            $table->string('name');
             $table->timestamps();
         });
     }

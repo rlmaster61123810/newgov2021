@@ -127,7 +127,7 @@
                         <div class="form-group">
                             <label for="kpi">ตัวชี้วัดผลการอบรม</label>
                             <textarea class="form-control" id="kpi" name="kpi" rows="3">
-                            {{ $project->kpi }}</textarea>
+                                {{ $project->kpi }}</textarea>
                             @error('kpi')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

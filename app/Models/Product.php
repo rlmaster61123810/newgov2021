@@ -9,6 +9,11 @@ class Product extends Model
 {
     use HasFactory;
 
+    // fillable
+    protected $fillable = [
+        'name',
+    ];
+
     // application
     public function application()
     {

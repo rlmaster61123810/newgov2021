@@ -62,9 +62,9 @@
                                                         <td>{{ $application->shop_name }}</td>
                                                         <td>{{ $application->product_type }}</td>
                                                         <td>
-                                                            <a href="{{ route('applications.edit', $project->id) }}"
+                                                            <a href="{{ route('applications.edit', $application->id) }}"
                                                                 class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('applications.destroy', $project->id) }}"
+                                                            <form action="{{ route('applications.destroy', $application->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')

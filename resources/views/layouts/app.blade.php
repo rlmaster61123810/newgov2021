@@ -289,6 +289,7 @@
             }, 5000);
         });
     </script>
+    @yield('script')
 </body>
 
 
