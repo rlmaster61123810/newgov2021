@@ -116,6 +116,11 @@
                         <a class="collapse-item" href="{{ route('projects.index') }}">จัดการโครงการ</a>
                         <h6 class="collapse-header">รับรองผู้ประกอบการ</h6>
                         <a class="collapse-item" href="{{ route('applications.index') }}">จัดการรับรองผู้ประกอบการ</a>
+                        <h6 class="collapse-header">ผู้เข้าร่วมโครงการ</h6>
+                        <a class="collapse-item" href="{{ route('attendees.index') }}">จัดการผู้เข้าร่วมโครงการ</a>
+                        <h6 class="collapse-header">ชุมชน</h6>
+                        <a class="collapse-item" href="{{ route('communities.index') }}">จัดการชุมชน</a>
+
                         {{-- <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>

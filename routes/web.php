@@ -66,6 +66,26 @@ Route::get('/applications/{application}/edit', [App\Http\Controllers\Application
 Route::put('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'update'])->name('applications.update');
 Route::delete('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'destroy'])->name('applications.destroy');
 
+// resource attendee
+Route::get('/attendees', [App\Http\Controllers\AttendeeController::class, 'index'])->name('attendees.index');
+Route::get('/attendees/create', [App\Http\Controllers\AttendeeController::class, 'create'])->name('attendees.create');
+Route::post('/attendees', [App\Http\Controllers\AttendeeController::class, 'store'])->name('attendees.store');
+Route::get('/attendees/{attendee}', [App\Http\Controllers\AttendeeController::class, 'show'])->name('attendees.show');
+Route::get('/attendees/{attendee}/edit', [App\Http\Controllers\AttendeeController::class, 'edit'])->name('attendees.edit');
+Route::put('/attendees/{attendee}', [App\Http\Controllers\AttendeeController::class, 'update'])->name('attendees.update');
+Route::delete('/attendees/{attendee}', [App\Http\Controllers\AttendeeController::class, 'destroy'])->name('attendees.destroy');
+
+// resource community
+Route::get('/communities', [App\Http\Controllers\CommunityController::class, 'index'])->name('communities.index');
+Route::get('/communities/create', [App\Http\Controllers\CommunityController::class, 'create'])->name('communities.create');
+Route::post('/communities', [App\Http\Controllers\CommunityController::class, 'store'])->name('communities.store');
+Route::get('/communities/{community}', [App\Http\Controllers\CommunityController::class, 'show'])->name('communities.show');
+Route::get('/communities/{community}/edit', [App\Http\Controllers\CommunityController::class, 'edit'])->name('communities.edit');
+Route::put('/communities/{community}', [App\Http\Controllers\CommunityController::class, 'update'])->name('communities.update');
+Route::delete('/communities/{community}', [App\Http\Controllers\CommunityController::class, 'destroy'])->name('communities.destroy');
+
+
+
 
 
 

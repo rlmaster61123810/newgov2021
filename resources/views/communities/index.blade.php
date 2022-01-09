@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
-                <li class="breadcrumb-item active" aria-current="page">โครงการ</li>
+                <li class="breadcrumb-item active" aria-current="page">ข้อมูลชุมชน</li>
             </ol>
         </nav>
         <div class="container">
@@ -12,8 +12,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>รายการโครงการ
-                                <a href="{{ route('projects.create') }}" class="btn btn-primary float-right">เพิ่มโครงการ
+                            <h3>รายการชุมชน
+                                <a href="{{ route('communities.create') }}" class="btn btn-primary float-right">เพิ่มชุมชน
                                 </a>
                             </h3>
                         </div>
@@ -33,16 +33,19 @@
                                             <thead class=" text-primary">
                                                 <tr>
                                                     <th>
-                                                        ชื่อโครงการ
+                                                        รหัสชุมชน
                                                     </th>
                                                     <th>
-                                                        หน่วยงาน
+                                                        หมู่บ้าน
                                                     </th>
                                                     <th>
-                                                        สถานที่
+                                                        หมู่
                                                     </th>
                                                     <th>
-                                                        สถานะผลการอบรม
+                                                        ตำบล
+                                                    </th>
+                                                    <th>
+                                                        แขวง
                                                     </th>
                                                     <th>
                                                         จัดการข้อมูล
@@ -50,25 +53,35 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($projects as $project)
+                                                @foreach ($communities as $community)
                                                     <tr>
-                                                        <td>{{ $project->name }}</td>
-                                                        <td>{{ $project->department }}</td>
-                                                        <td>{{ $project->location }}</td>
+                                                        <td>{{ $community->code }}</td>
+                                                        <td>{{ $community->village }}</td>
+                                                        <td>{{ $community->moo }}</td>
+                                                        <td>{{ $community->district }}</td>
                                                         <td>
-                                                            @if ($project->result == 'processed')
-                                                                <span class="badge badge-success">อบรมเสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'processing')
-                                                                <span
-                                                                    class="badge badge-warning">อบรมยังไม่เสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'unprocessed')
-                                                                <span class="badge badge-danger">ยังไม่อบรม</span>
+                                                            @if ($community->sub_district == 'NAKORNPING')
+                                                                <span class="badge badge-success">
+                                                                    นครพิงค์
+                                                                </span>
+                                                            @elseif($community->sub_district == 'KAWILA')
+                                                                <span class="badge badge-warning">
+                                                                    กาวิละ
+                                                                </span>
+                                                            @elseif($community->sub_district == 'MENGRAI')
+                                                                <span class="badge badge-danger">
+                                                                    เม็งราย
+                                                                </span>
+                                                            @elseif($community->sub_district == 'SRIVICHAI')
+                                                                <span class="badge badge-info">
+                                                                    ศรีวิชัย
+                                                                </span>
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('projects.edit', $project->id) }}"
+                                                            <a href="{{ route('communities.edit', $community->id) }}"
                                                                 class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('projects.destroy', $project->id) }}"
+                                                            <form action="{{ route('communities.destroy', $community->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')

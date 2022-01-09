@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
-                <li class="breadcrumb-item active" aria-current="page">โครงการ</li>
+                <li class="breadcrumb-item active" aria-current="page">ผู้เข้าร่วมโครงการ</li>
             </ol>
         </nav>
         <div class="container">
@@ -12,8 +12,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>รายการโครงการ
-                                <a href="{{ route('projects.create') }}" class="btn btn-primary float-right">เพิ่มโครงการ
+                            <h3>รายการผู้เข้าร่วมโครงการ
+                                <a href="{{ route('attendees.create') }}"
+                                    class="btn btn-primary float-right">เพิ่มผู้เข้าร่วมโครงการ
                                 </a>
                             </h3>
                         </div>
@@ -29,46 +30,35 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-hover ">
+                                        <table class="table table-striped table-hover">
                                             <thead class=" text-primary">
                                                 <tr>
                                                     <th>
-                                                        ชื่อโครงการ
+                                                        รหัสผู้เข้าร่วมโครงการ
                                                     </th>
                                                     <th>
-                                                        หน่วยงาน
-                                                    </th>
-                                                    <th>
-                                                        สถานที่
-                                                    </th>
-                                                    <th>
-                                                        สถานะผลการอบรม
-                                                    </th>
-                                                    <th>
-                                                        จัดการข้อมูล
+                                                        ประเภทผู้เข้าร่วมโครงการ
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($projects as $project)
+                                                @foreach ($attendees as $attendee)
                                                     <tr>
-                                                        <td>{{ $project->name }}</td>
-                                                        <td>{{ $project->department }}</td>
-                                                        <td>{{ $project->location }}</td>
+                                                        <td>{{ $attendee->form_id }}</td>
                                                         <td>
-                                                            @if ($project->result == 'processed')
-                                                                <span class="badge badge-success">อบรมเสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'processing')
+                                                            @if ($attendee->type == 'community')
+                                                                <span class="badge badge-success">ชุมชน</span>
+                                                            @elseif($attendee->type == 'entrepreneur')
                                                                 <span
-                                                                    class="badge badge-warning">อบรมยังไม่เสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'unprocessed')
-                                                                <span class="badge badge-danger">ยังไม่อบรม</span>
+                                                                    class="badge badge-warning">ผู้ประกอบการ</span>
+                                                            @elseif($attendee->type == 'individual')
+                                                                <span class="badge badge-danger">บุคคลธรรมดา</span>
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('projects.edit', $project->id) }}"
+                                                            <a href="{{ route('attendees.edit', $attendee->id) }}"
                                                                 class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('projects.destroy', $project->id) }}"
+                                                            <form action="{{ route('attendees.destroy', $attendee->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
