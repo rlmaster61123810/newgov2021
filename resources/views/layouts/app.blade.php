@@ -118,8 +118,18 @@
                         <a class="collapse-item" href="{{ route('applications.index') }}">จัดการรับรองผู้ประกอบการ</a>
                         <h6 class="collapse-header">ผู้เข้าร่วมโครงการ</h6>
                         <a class="collapse-item" href="{{ route('attendees.index') }}">จัดการผู้เข้าร่วมโครงการ</a>
+                        <h6 class="collapse-header">รายละเอียดผู้เข้าร่วมโครงการ</h6>
+                        <a class="collapse-item" href="{{ route('attendee_details.index') }}">จัดการรายละเอียด<br>ผู้เข้าร่วมโครงการ</a>
                         <h6 class="collapse-header">ชุมชน</h6>
                         <a class="collapse-item" href="{{ route('communities.index') }}">จัดการชุมชน</a>
+                        <h6 class="collapse-header">สินค้า</h6>
+                        <a class="collapse-item" href="{{ route('products.index') }}">จัดการสินค้า</a>
+                        <h6 class="collapse-header">ใบรับรอง</h6>
+                        <a class="collapse-item" href="{{ route('approvals.index') }}">จัดการใบรับรอง</a>
+                        <h6 class="collapse-header">ผู้รับรองผู้ประกอบการ</h6>
+                        <a class="collapse-item" href="{{ route('forms.index') }}">จัดการผู้รับรองผู้ประกอบการ</a>
+                        <h6 class="collapse-header">ใบเสร็จ</h6>
+                        <a class="collapse-item" href="{{ route('bills.index') }}">จัดการใบเสร็จ</a>
 
                         {{-- <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>

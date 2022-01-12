@@ -62,15 +62,26 @@
                                                         <td>{{ $application->shop_name }}</td>
                                                         <td>{{ $application->product_type }}</td>
                                                         <td>
+                                                            {{-- see data --}}
+                                                            <a href="{{ route('applications.show', $application->id) }}"
+                                                                class="btn btn-info btn-sm">
+                                                                แสดงข้อมูล
+                                                            </a>
+                                                            {{-- edit data --}}
                                                             <a href="{{ route('applications.edit', $application->id) }}"
-                                                                class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('applications.destroy', $application->id) }}"
+                                                                class="btn btn-primary btn-sm">
+                                                                แก้ไข
+                                                            </a>
+                                                            <form
+                                                                action="{{ route('applications.destroy', $application->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
                                                                     onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
-                                                                    class="btn btn-danger btn-sm">ลบ</button>
+                                                                    class="btn btn-danger btn-sm">
+                                                                    ลบ
+                                                                </button>
                                                             </form>
                                                         </td>
                                                     </tr>

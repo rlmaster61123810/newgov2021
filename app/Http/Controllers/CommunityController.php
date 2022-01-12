@@ -66,6 +66,12 @@ class CommunityController extends Controller
         $community->save();
         return redirect('/communities')->with('success', 'บันทึกข้อมูลสำเร็จ');
     }
+    // show
+    public function show($id)
+    {
+        $community = Community::find($id);
+        return view('communities.show', compact('community'));
+    }
     // delete community
     public function destroy($id)
     {

@@ -4,7 +4,8 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
-                <li class="breadcrumb-item active" aria-current="page">โครงการ</li>
+                <li class="breadcrumb-item active" aria-current="page">จัดการผู้รับรองผู้ประกอบการ</li>
+
             </ol>
         </nav>
         <div class="container">
@@ -12,8 +13,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>รายการโครงการ
-                                <a href="{{ route('projects.create') }}" class="btn btn-primary float-right">เพิ่มโครงการ
+                            <h3>ผู้รับรองผู้ประกอบการ
+                                <a href="{{ route('forms.create') }}"
+                                    class="btn btn-primary float-right">เพิ่มผู้รับรองผู้ประกอบการ
                                 </a>
                             </h3>
                         </div>
@@ -33,16 +35,13 @@
                                             <thead class=" text-primary">
                                                 <tr>
                                                     <th>
-                                                        ชื่อโครงการ
+                                                        ชื่อ-นามสกุล
                                                     </th>
                                                     <th>
-                                                        หน่วยงาน
+                                                        ตำแหน่ง
                                                     </th>
                                                     <th>
-                                                        สถานที่
-                                                    </th>
-                                                    <th>
-                                                        สถานะผลการอบรม
+                                                        เบอร์โทร
                                                     </th>
                                                     <th>
                                                         จัดการข้อมูล
@@ -50,35 +49,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($projects as $project)
+                                                @foreach ($forms as $form)
                                                     <tr>
-                                                        <td>{{ $project->name }}</td>
-                                                        <td>{{ $project->department }}</td>
-                                                        <td>{{ $project->location }}</td>
-                                                        <td>
-                                                            @if ($project->result == 'processed')
-                                                                <span class="badge badge-success">อบรมเสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'processing')
-                                                                <span
-                                                                    class="badge badge-warning">อบรมยังไม่เสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'unprocessed')
-                                                                <span class="badge badge-danger">ยังไม่อบรม</span>
-                                                            @endif
-                                                        </td>
+                                                        <td>{{ $form->auditor_name }}</td>
+                                                        <td>{{ $form->auditor_position }}</td>
+                                                        <td>{{ $form->auditor_phone }}</td>
                                                         <td>
                                                             {{-- show --}}
-                                                            <a href="{{ route('projects.show', $project->id) }}"
-                                                                class="btn btn-info btn-sm">แสดงข้อมูล
+                                                            <a href="{{ route('forms.show', $form->id) }}"
+                                                                class="btn btn-info btn-sm">
+                                                                แสดงข้อมูล
                                                             </a>
-                                                            <a href="{{ route('projects.edit', $project->id) }}"
-                                                                class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('projects.destroy', $project->id) }}"
+                                                            <a href="{{ route('forms.edit', $form->id) }}"
+                                                                class="btn btn-primary btn-sm">
+                                                                แก้ไข</a>
+                                                            <form action="{{ route('forms.destroy', $form->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
                                                                     onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
-                                                                    class="btn btn-danger btn-sm">ลบ</button>
+                                                                    class="btn btn-danger btn-sm">
+                                                                    ลบ</button>
                                                             </form>
                                                         </td>
                                                     </tr>

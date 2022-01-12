@@ -84,6 +84,57 @@ Route::get('/communities/{community}/edit', [App\Http\Controllers\CommunityContr
 Route::put('/communities/{community}', [App\Http\Controllers\CommunityController::class, 'update'])->name('communities.update');
 Route::delete('/communities/{community}', [App\Http\Controllers\CommunityController::class, 'destroy'])->name('communities.destroy');
 
+// resource product
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{product}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+Route::put('/products/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
+Route::delete('/products/{product}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
+
+// resource approvals
+Route::get('/approvals', [App\Http\Controllers\ApprovalController::class, 'index'])->name('approvals.index');
+Route::get('/approvals/create', [App\Http\Controllers\ApprovalController::class, 'create'])->name('approvals.create');
+Route::post('/approvals', [App\Http\Controllers\ApprovalController::class, 'store'])->name('approvals.store');
+Route::get('/approvals/{approval}', [App\Http\Controllers\ApprovalController::class, 'show'])->name('approvals.show');
+Route::get('/approvals/{approval}/edit', [App\Http\Controllers\ApprovalController::class, 'edit'])->name('approvals.edit');
+Route::put('/approvals/{approval}', [App\Http\Controllers\ApprovalController::class, 'update'])->name('approvals.update');
+Route::delete('/approvals/{approval}', [App\Http\Controllers\ApprovalController::class, 'destroy'])->name('approvals.destroy');
+
+//attendee_details
+Route::get('/attendee_details', [App\Http\Controllers\AttendeeDetailController::class, 'index'])->name('attendee_details.index');
+Route::get('/attendee_details/create', [App\Http\Controllers\AttendeeDetailController::class, 'create'])->name('attendee_details.create');
+Route::post('/attendee_details', [App\Http\Controllers\AttendeeDetailController::class, 'store'])->name('attendee_details.store');
+Route::get('/attendee_details/{attendee_detail}', [App\Http\Controllers\AttendeeDetailController::class, 'show'])->name('attendee_details.show');
+Route::get('/attendee_details/{attendee_detail}/edit', [App\Http\Controllers\AttendeeDetailController::class, 'edit'])->name('attendee_details.edit');
+Route::put('/attendee_details/{attendee_detail}', [App\Http\Controllers\AttendeeDetailController::class, 'update'])->name('attendee_details.update');
+Route::delete('/attendee_details/{attendee_detail}', [App\Http\Controllers\AttendeeDetailController::class, 'destroy'])->name('attendee_details.destroy');
+
+// forms
+Route::get('/forms', [App\Http\Controllers\FormController::class, 'index'])->name('forms.index');
+Route::get('/forms/create', [App\Http\Controllers\FormController::class, 'create'])->name('forms.create');
+Route::post('/forms', [App\Http\Controllers\FormController::class, 'store'])->name('forms.store');
+Route::get('/forms/{form}', [App\Http\Controllers\FormController::class, 'show'])->name('forms.show');
+Route::get('/forms/{form}/edit', [App\Http\Controllers\FormController::class, 'edit'])->name('forms.edit');
+Route::put('/forms/{form}', [App\Http\Controllers\FormController::class, 'update'])->name('forms.update');
+Route::delete('/forms/{form}', [App\Http\Controllers\FormController::class, 'destroy'])->name('forms.destroy');
+
+// bills
+Route::get('/bills', [App\Http\Controllers\BillController::class, 'index'])->name('bills.index');
+Route::get('/bills/create', [App\Http\Controllers\BillController::class, 'create'])->name('bills.create');
+Route::post('/bills', [App\Http\Controllers\BillController::class, 'store'])->name('bills.store');
+Route::get('/bills/{bill}', [App\Http\Controllers\BillController::class, 'show'])->name('bills.show');
+Route::get('/bills/{bill}/edit', [App\Http\Controllers\BillController::class, 'edit'])->name('bills.edit');
+Route::put('/bills/{bill}', [App\Http\Controllers\BillController::class, 'update'])->name('bills.update');
+Route::delete('/bills/{bill}', [App\Http\Controllers\BillController::class, 'destroy'])->name('bills.destroy');
+
+
+
+
+
+
+
 
 
 

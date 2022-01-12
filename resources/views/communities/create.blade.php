@@ -4,14 +4,14 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
             <li class="breadcrumb-item"><a href="{{ route('communities.index') }}">ชุมชน</a></li>
-            <li class="breadcrumb-item active" aria-current="page">เพิ่มชุมชน</li>
+            <li class="breadcrumb-item active" aria-current="page">เพิ่มข้อมูลชุมชน</li>
         </ol>
     </nav>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>เพิ่มชุมชน</h4>
+                    <h4>เพิ่มข้อมูลชุมชน</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('communities.store') }}" method="POST" enctype="multipart/form-data">

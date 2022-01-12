@@ -58,6 +58,9 @@
                                                 {{ $user->role }}
                                             </td>
                                             <td>
+                                                {{-- show --}}
+                                                <a href="{{ route('users.show', $user->id) }}"
+                                                    class="btn btn-info btn-sm"> แสดงข้อมูล </a>
                                                 <a href="{{ route('users.edit', $user->id) }}"
                                                     class="btn btn-sm btn-primary">
                                                     แก้ไข </a>

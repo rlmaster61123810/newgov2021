@@ -59,15 +59,23 @@
                                                         <td>{{ $sale_area->size }}</td>
                                                         <td>{{ $sale_area->price }}</td>
                                                         <td>
+                                                            {{-- show --}}
+                                                            <a href="{{ route('sale_areas.show', $sale_area->id) }}"
+                                                                class="btn btn-info btn-sm">
+                                                                แสดงข้อมูล
+                                                            </a>
                                                             <a href="{{ route('sale_areas.edit', $sale_area->id) }}"
-                                                                class="btn btn-primary btn-sm">แก้ไข</a>
+                                                                class="btn btn-primary btn-sm">
+                                                                แก้ไข
+                                                            </a>
                                                             <form
                                                                 action="{{ route('sale_areas.destroy', $sale_area->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger btn-sm">ลบ</button>
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    ลบ
+                                                                </button>
                                                             </form>
                                                         </td>
                                                     </tr>

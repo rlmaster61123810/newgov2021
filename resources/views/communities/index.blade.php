@@ -12,7 +12,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>รายการชุมชน
+                            <h3>รายการข้อมูลชุมชน
                                 <a href="{{ route('communities.create') }}" class="btn btn-primary float-right">เพิ่มชุมชน
                                 </a>
                             </h3>
@@ -79,6 +79,10 @@
                                                             @endif
                                                         </td>
                                                         <td>
+                                                            {{-- show --}}
+                                                            <a href="{{ route('communities.show', $community->id) }}"
+                                                                class="btn btn-info btn-sm">แสดงข้อมูล
+                                                            </a>
                                                             <a href="{{ route('communities.edit', $community->id) }}"
                                                                 class="btn btn-primary btn-sm">แก้ไข</a>
                                                             <form action="{{ route('communities.destroy', $community->id) }}"

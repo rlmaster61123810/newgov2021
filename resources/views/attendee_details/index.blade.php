@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
-                <li class="breadcrumb-item active" aria-current="page">โครงการ</li>
+                <li class="breadcrumb-item active" aria-current="page">ข้อมูลผู้เข้าร่วมโครงการ</li>
             </ol>
         </nav>
         <div class="container">
@@ -12,8 +12,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>รายการโครงการ
-                                <a href="{{ route('projects.create') }}" class="btn btn-primary float-right">เพิ่มโครงการ
+                            <h3>รายการข้อมูลผู้เข้าร่วมโครงการ
+                                <a href="{{ route('attendee_details.create') }}" class="btn btn-primary float-right">เพิ่มข้อมูลผู้เข้าร่วมโครงการ
                                 </a>
                             </h3>
                         </div>
@@ -33,46 +33,53 @@
                                             <thead class=" text-primary">
                                                 <tr>
                                                     <th>
-                                                        ชื่อโครงการ
+                                                        ชื่อ-นามสกุล
                                                     </th>
                                                     <th>
-                                                        หน่วยงาน
+                                                        เบอร์โทร
                                                     </th>
                                                     <th>
-                                                        สถานที่
+                                                        อาหารฮาลาล
                                                     </th>
                                                     <th>
-                                                        สถานะผลการอบรม
+                                                        จำนวนเงิน
                                                     </th>
                                                     <th>
-                                                        จัดการข้อมูล
+                                                        วิธีการชำระเงิน
+                                                    </th>
+                                                    <th>
+                                                        หมายเหตุ
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($projects as $project)
+                                                @foreach ($attendee_details as $attendee_detail)
                                                     <tr>
-                                                        <td>{{ $project->name }}</td>
-                                                        <td>{{ $project->department }}</td>
-                                                        <td>{{ $project->location }}</td>
                                                         <td>
-                                                            @if ($project->result == 'processed')
-                                                                <span class="badge badge-success">อบรมเสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'processing')
-                                                                <span
-                                                                    class="badge badge-warning">อบรมยังไม่เสร็จสมบูรณ์</span>
-                                                            @elseif($project->result == 'unprocessed')
-                                                                <span class="badge badge-danger">ยังไม่อบรม</span>
-                                                            @endif
+                                                            {{ $attendee_detail->attendee->name }}
                                                         </td>
                                                         <td>
+                                                            {{ $attendee_detail->phone }}
+                                                        </td>
+                                                        <td>
+                                                            @if ($attendee_detail->is_halal == 'attendee_detail')
+                                                                <span class="badge badge-success">ใช่</span>
+                                                            @elseif($attendee_detail->is_halal == 'yes')
+                                                                <span
+                                                                    class="badge badge-warning">ผู้ประกอบการ</span>
+                                                            @elseif($attendee_detail->is_halal == 'no')
+                                                                <span class="badge badge-danger">ไม่ใช่</span>
+                                                            @endif
+                                                        </td>
+
+                                                        </td>
                                                             {{-- show --}}
-                                                            <a href="{{ route('projects.show', $project->id) }}"
+                                                            <a href="{{ route('attendee_details.show', $attendee_detail->id) }}"
                                                                 class="btn btn-info btn-sm">แสดงข้อมูล
                                                             </a>
-                                                            <a href="{{ route('projects.edit', $project->id) }}"
+                                                            <a href="{{ route('attendee_details.edit', $attendee_detail->id) }}"
                                                                 class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('projects.destroy', $project->id) }}"
+                                                            <form action="{{ route('attendee_details.destroy', $attendee_detail->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
