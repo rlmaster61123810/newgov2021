@@ -91,6 +91,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ผู้ประกอบการ</h6>
                         <a class="collapse-item" href="{{ route('applications.index') }}">จัดการผู้ประกอบการ</a>
+                        <h6 class="collapse-header">อนุมัติรับรองผู้ประกอบการ</h6>
+                        <a class="collapse-item"
+                            href="{{ route('approvals.index') }}">จัดการแบบอนุมัติรับรอง<br>ผู้ประกอบการ</a>
 
                     </div>
                 </div>
@@ -116,15 +119,9 @@
                         <h6 class="collapse-header">พื้นที่ขาย</h6>
                         <a class="collapse-item" href="{{ route('sale_areas.index') }}">จัดการพื้นที่ขาย</a>
                         <h6 class="collapse-header">แบบตอบรับโครงการ</h6>
-                        <a class="collapse-item"
-                            href="{{ route('forms.index') }}">แบบตอบรับโครงการ</a>
+                        <a class="collapse-item" href="{{ route('forms.index') }}">แบบตอบรับโครงการ</a>
                         <h6 class="collapse-header">ชุมชน</h6>
                         <a class="collapse-item" href="{{ route('communities.index') }}">จัดการชุมชน</a>
-                        <h6 class="collapse-header">อนุมัติรับรองผู้ประกอบการ</h6>
-                        <a class="collapse-item"
-                            href="{{ route('approvals.index') }}">จัดการแบบอนุมัติรับรอง<br>ผู้ประกอบการ</a>
-                        <h6 class="collapse-header">ใบเสร็จ</h6>
-                        <a class="collapse-item" href="{{ route('bills.index') }}">จัดการใบเสร็จ</a>
 
                         {{-- <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
@@ -147,11 +144,11 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>รายงานผล</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -215,7 +212,7 @@
                                     {{-- logout form --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                            document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Logout') }}
                                     </a>
