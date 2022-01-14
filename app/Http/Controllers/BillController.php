@@ -15,58 +15,90 @@ class BillController extends Controller
     public function index()
     {
         $bills = Bill::all();
-        return view('bills.index', ['bills' => $bills]);
+        return view('bills.index', compact('bills'));
+
     }
     // create
     public function create()
     {
-        return view('bills.create');
+        $bills = \App\Models\Bill::all();
+        $approvals = \App\Models\Approval::all();
+        $users = \App\Models\User::all();
+        return view('bills.create', ['bills' => $bills, 'approvals' => $approvals, 'users' => $users]);
     }
     // store
     public function store(Request $request)
     {
-        $bill = new Bill();
-        $bill->name = $request->name;
+        $request->validate([
+            'approval_id' => 'required',
+            'user_id' => 'required',
+            'price' => 'required',
+            'amount' => 'required',
+            'payment_method' => 'required',
+            'comment' => 'required',
+        ]);
+        $bill = new Bill;
         $bill->approval_id = $request->approval_id;
         $bill->user_id = $request->user_id;
         $bill->price = $request->price;
-        $bill->paid = $request->paid;
         $bill->amount = $request->amount;
         $bill->payment_method = $request->payment_method;
         $bill->comment = $request->comment;
         $bill->save();
-        return redirect('/bills');
-    }
-    // show
-    public function show(Bill $bill)
-    {
-        return view('bills.show', ['bill' => $bill]);
+        return redirect('/bills')->with('success', 'Bill created successfully');
     }
     // edit
-    public function edit(Bill $bill)
+    public function edit($id)
     {
-        return view('bills.edit', ['bill' => $bill]);
+        $bill = Bill::find($id);
+        $approvals = \App\Models\Approval::all();
+        $users = \App\Models\User::all();
+        return view('bills.edit', ['bill' => $bill, 'approvals' => $approvals, 'users' => $users]);
     }
     // update
-    public function update(Request $request, Bill $bill)
+    public function update(Request $request, $id)
     {
-        $bill->name = $request->name;
+        $request->validate([
+            'approval_id' => 'required',
+            'user_id' => 'required',
+            'price' => 'required',
+            'amount' => 'required',
+            'payment_method' => 'required',
+            'comment' => 'required',
+        ]);
+        $bill = Bill::find($id);
         $bill->approval_id = $request->approval_id;
         $bill->user_id = $request->user_id;
         $bill->price = $request->price;
-        $bill->paid = $request->paid;
         $bill->amount = $request->amount;
         $bill->payment_method = $request->payment_method;
         $bill->comment = $request->comment;
         $bill->save();
-        return redirect('/bills');
+        return redirect('/bills')->with('success', 'Bill updated successfully');
+    }
+    // show
+    public function show($id)
+    {
+        $bill = Bill::find($id);
+        $approvals = \App\Models\Approval::all();
+        $users = \App\Models\User::all();
+        return view('bills.show', ['bill' => $bill, 'approvals' => $approvals, 'users' => $users]);
     }
     // destroy
-    public function destroy(Bill $bill)
+    public function destroy($id)
     {
+        $bill = Bill::find($id);
         $bill->delete();
-        return redirect('/bills');
+        return redirect('/bills')->with('success', 'Bill deleted successfully');
     }
+
+
+
+
+
+
+
+
 
 
 

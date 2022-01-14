@@ -15,10 +15,10 @@ class Form extends Model
         return $this->belongsTo(Project::class);
     }
 
-    // attendees
-    public function attendees()
+    // attendee
+    public function attendee()
     {
-        return $this->hasMany(Attendee::class);
+        return $this->hasOne(Attendee::class);
     }
 
     // community

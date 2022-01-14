@@ -36,13 +36,13 @@
                                                         รหัสชุมชน
                                                     </th>
                                                     <th>
-                                                        หมู่บ้าน
+                                                        ชื่อชุมชน
                                                     </th>
                                                     <th>
                                                         หมู่
                                                     </th>
                                                     <th>
-                                                        ตำบล
+                                                        อำเภอ
                                                     </th>
                                                     <th>
                                                         แขวง
@@ -59,25 +59,7 @@
                                                         <td>{{ $community->village }}</td>
                                                         <td>{{ $community->moo }}</td>
                                                         <td>{{ $community->district }}</td>
-                                                        <td>
-                                                            @if ($community->sub_district == 'NAKORNPING')
-                                                                <span class="badge badge-success">
-                                                                    นครพิงค์
-                                                                </span>
-                                                            @elseif($community->sub_district == 'KAWILA')
-                                                                <span class="badge badge-warning">
-                                                                    กาวิละ
-                                                                </span>
-                                                            @elseif($community->sub_district == 'MENGRAI')
-                                                                <span class="badge badge-danger">
-                                                                    เม็งราย
-                                                                </span>
-                                                            @elseif($community->sub_district == 'SRIVICHAI')
-                                                                <span class="badge badge-info">
-                                                                    ศรีวิชัย
-                                                                </span>
-                                                            @endif
-                                                        </td>
+                                                        <td>{{ $community->sub_district }}</td>
                                                         <td>
                                                             {{-- show --}}
                                                             <a href="{{ route('communities.show', $community->id) }}"
@@ -85,7 +67,8 @@
                                                             </a>
                                                             <a href="{{ route('communities.edit', $community->id) }}"
                                                                 class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('communities.destroy', $community->id) }}"
+                                                            <form
+                                                                action="{{ route('communities.destroy', $community->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')

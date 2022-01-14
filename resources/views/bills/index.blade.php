@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>รายการใบเสร็จ
-                                <a href="{{ route('projects.create') }}" class="btn btn-primary float-right">เพิ่มใบเสร็จ
+                                <a href="{{ route('bills.create') }}" class="btn btn-primary float-right">เพิ่มใบเสร็จ
                                 </a>
                             </h3>
                         </div>
@@ -33,34 +33,42 @@
                                             <thead class=" text-primary">
                                                 <tr>
                                                     <th>
-                                                        ชื่อ-นามสกุล
-                                                    </th>
-                                                    <th>
-                                                        ราคา
-                                                    </th>
-                                                    <th>
-                                                        สถานะการจ่าย
+                                                        ชื่อรายการ
                                                     </th>
                                                     <th>
                                                         จำนวนเงิน
                                                     </th>
                                                     <th>
-                                                        วิธีการชำระเงิน
+                                                        ผู้อนุมัติ
                                                     </th>
                                                     <th>
-                                                        หมายเหตุ
+                                                        สถานะการชำระเงิน
+                                                    </th>
+                                                    <th>
+                                                        จัดการข้อมูล
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($bills as $bill)
                                                     <tr>
-                                                        <td>{{ $bill->name }}</td>
-                                                        <td>{{ $bill->price }}</td>
-                                                        <td>{{ $bill->paid }}</td>
-                                                        <td>{{ $bill->amount }}</td>
-                                                        <td>{{ $bill->payment_method }}</td>
-                                                        <td>{{ $bill->note }}</td>
+                                                        <td>
+                                                            {{ $bill->application->fullname }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $bill->price }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $approval->user->name }}
+                                                        </td>
+                                                        <td>
+                                                            {{-- status  bills paid --}}
+                                                            @if ($bill->paid == 0)
+                                                                <span class="badge badge-danger">ยังไม่ชำระเงิน</span>
+                                                            @elseif ($bill->paid == 1)
+                                                                <span class="badge badge-success">ชำระเงินแล้ว</span>
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             {{-- show --}}
                                                             <a href="{{ route('bills.show', $project->id) }}"

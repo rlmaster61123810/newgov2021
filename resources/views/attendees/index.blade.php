@@ -33,8 +33,12 @@
                                         <table class="table table-striped table-hover">
                                             <thead class=" text-primary">
                                                 <tr>
+                                                     {{-- community_name --}}
+                                                     <th>
+                                                        ชื่อชุมชน
+                                                    </th>
                                                     <th>
-                                                        รหัสผู้เข้าร่วมโครงการ
+                                                        แขวง
                                                     </th>
                                                     <th>
                                                         ประเภทผู้เข้าร่วมโครงการ

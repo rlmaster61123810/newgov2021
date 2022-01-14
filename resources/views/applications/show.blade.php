@@ -1,270 +1,47 @@
-@extends('layouts.app')
-@section('content')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('applications.index') }}">หนังสือรับรองผู้ประกอบการ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">แสดงข้อมูลผู้ประกอบการ</li>
-        </ol>
-    </nav>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>แสดงข้อมูลผู้ประกอบการ</h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('applications.show', $application->id) }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        {{-- has_idcard check box if have = 0 nothave = 1 --}}
-                        <h4>เอกสารที่แนบมาด้วย</h4>
-                        <hr>
-                        <div class="form-group">
-                            <label for="has_idcard">มีบัตรประชาชน</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="has_idcard" id="has_idcard" value="0"
-                                    checked disabled="has_idcard" disabled="has_idcard">
-                                <label class="form-check-label" for="has_idcard">
-                                    ไม่มีบัตรประชาชน
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="has_idcard" id="has_idcard" value="1"
-                                    disabled="has_idcard">
-                                <label class="form-check-label" for="has_idcard">
-                                    มีบัตรประชาชน
-                                </label>
-                            </div>
-                        </div>
+{{-- has_idcard --}}
+{{-- check icon --}}
+<div>
+    <h4>เอกสารที่แนบมาด้วย</h4>
+    <p>
+        {!! $application->has_idcard ? ' &check;' : ' &cross;' !!} สำเนาบัตรประชาชน
+    </p>
+    <p>
+        {!! $application->has_house_registration ? ' &check;' : ' &cross;' !!} สำเนาทะเบียนบ้าน
+    </p>
+    <p>
+        {!! $application->has_document ? ' &check;' : ' &cross;' !!} เอกสารประกอบอื่นๆ
+    </p>
 
-                        <div class="form-group">
-                            <label for="has_house_registration">มีทะเบียนบ้าน</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="has_house_registration"
-                                    id="has_house_registration" value="0" checked disabled="has_house_registration">
-                                <label class="form-check-label" for="has_house_registration">
-                                    ไม่มี
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="has_house_registration"
-                                    id="has_house_registration" value="1" disabled="has_house_registration">
-                                <label class="form-check-label" for="has_house_registration">
-                                    มี
-                                </label>
-                            </div>
-                        </div>
-                        {{-- has_document check box if have = 0 nothave = 1 --}}
-                        <div class="form-group">
-                            <label for="has_document">มีเอกสารประกอบ</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="has_document" id="has_document" value="0"
-                                    checked disabled="has_document">
-                                <label class="form-check-label" for="has_document">
-                                    ไม่มีเอกสารประกอบ
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="has_document" id="has_document" value="1"
-                                    disabled="has_document">
-                                <label class="form-check-label" for="has_document">
-                                    มีเอกสารประกอบ
-                                </label>
-                            </div>
-                        </div>
-                        <h4>รายละเอียดผู้สมัคร</h4>
-                        <hr>
-                        <div class="form-group">
-                            <label for="fullname">ชื่อ-นามสกุล</label>
-                            <input type="text" class="form-control" id="fullname" name="fullname"
-                                value="{{ $application->fullname }}" disabled="fullname">
-                            @error('fullname')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="address">ที่อยู่</label>
-                            <textarea class="form-control" id="address" name="address" rows="3"
-                                disabled="has_document">{{ $application->address }}</textarea>
-                            @error('address')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        {{-- phone --}}
-                        <div class="form-group">
-                            <label for="phone">เบอร์โทรศัพท์</label>
-                            <input type="text" class="form-control" id="phone" name="phone" disabled="phone"
-                                value="{{ $application->phone }}">
-                            @error('phone')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
+    <hr>
 
-                        {{-- input type="radio" toggle is_entrepreneur --}}
-                        <div class="form-group">
-                            <label for="is_entrepreneur">ลักษณะของใบสมัคร</label>
+    <h4>รายละเอียดผู้สมัคร</h4>
 
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="toggle" id="is_entrepreneur_1" value="0"
-                                    checked disabled="is_entrepreneur">
-                                <label class="form-check-label" for="is_entrepreneur_1">
-                                    เป็นกลุ่มชุมชน
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="toggle" id="is_entrepreneur_2" value="1"
-                                    disabled="is_entrepreneur">
-                                <label class="form-check-label" for="is_entrepreneur_2"
-                                    value="{{ $application->is_entrepreneur_2 }}">
-                                    เป็นผู้ประกอบการ
-                                </label>
-                            </div>
-                        </div>
-                        <div id="is_group">
-                            <div class="form-group">
-                                <label for="groupname">ชื่อกลุ่ม</label>
-                                <input type="text" class="form-control" name="group_name" id="group_name"
-                                    placeholder="ชื่อกลุ่ม" value="{{ $application->group_name }}" disabled=groupname>
-                                @error('group_name')
-                                    <small class="form-text text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div id="is_not_group">
-                        </div>
-                        <div class="form-group">
-                            <label for="product_type">ประเภทผลิตภัณฑ์</label>
-                            <select id="product_type" class="form-control" name="product_type" required
-                                value={{ $application->product_type }} name="product_type" required
-                                disabled="product_type">
-                                <option value="FOOD" {{ $application->product_type == 'FOOD' ? 'selected' : '' }}>
-                                    อาหาร
-                                </option>
-                                <option value="SOUVENIR"
-                                    {{ $application->product_type == 'SOUVENIR' ? 'selected' : '' }}>
-                                    ของใช้ ของตกแต่งของที่ระลึก
-                                </option>
-                                <option value="BEVERAGE"
-                                    {{ $application->product_type == 'BEVERAGE' ? 'selected' : '' }}>
-                                    เครื่องดื่ม
-                                </option>
-                                <option value="HERB" {{ $application->product_type == 'HERB' ? 'selected' : '' }}>
-                                    สมุนไพรไม่ใช่อาหาร
-                                </option>
-                                <option value="CLOTHES" {{ $application->product_type == 'CLOTHES' ? 'selected' : '' }}>
-                                    เสื้อผ้าเครื่องแต่งกาย
-                                </option>
-                                <option value="OTHER" {{ $application->product_type == 'OTHER' ? 'selected' : '' }}>
-                                    อื่นๆ
-                                </option>
-                            </select>
-                        </div>
+    <p>
+        <strong> ชื่อ-สกุล :</strong><u> {{ $application->fullname }} </u> &nbsp;
+        <strong>ที่อยู่ :</strong><u>&nbsp; &nbsp; {{ $application->address }} &nbsp; </u> &nbsp;
+        {{-- phone --}}
+        <strong>เบอร์โทรศัพท์ :</strong><u> &nbsp; {{ $application->phone }}</u> &nbsp;
+        {{-- email --}}
+        @if ($application->group_name)
+            <strong>ซึ่งเป็นประธานกลุ่ม : </strong> {{ $application->group_name }}
+        @else
+            <strong>ซึ่งเป็นผู้ประกอบการผลิตภัณฑ์</strong>
+        @endif
+    </p>
 
-                        {{-- see data reason only can't edit --}}
-                        <div class="form-group" id="reason_section">
-                            <label for="reason">ระบุประเภทผลิตภัณฑ์</label>
-                            <input type="text" class="form-control" name="reason" id="reason"
-                                placeholder="ระบุประเภทผลิตภัณฑ์" value="{{ $application->reason }}">
-                            @error('reason')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
+    <hr>
 
-                        {{-- product[] with add more button --}}
-                        <div id="products_form">
-                            <h4>รายการสินค้า <span class="text-danger"><small> * หากมีสินค้ามากกว่า 1
-                                        รายการโปรดเลือกที่เพิ่มผลิตภัณฑ์อีก </small></span> </h4>
-                            <hr>
-                            <div class="form-group">
-                                <label for="product">ชื่อผลิตภัณฑ์</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="products[]" id="product"
-                                        placeholder="ชื่อผลิตภัณฑ์" value="{{ $application->product }}" disabled="product">
-                                </div>
-                                @error('product')
-                                    <small class="form-text text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <h4>รายละเอียดที่ตั้งร้านค้า</h4>
-                        <hr>
-                        <div class="form-group">
-                            <label for="shop_name">ชื่อร้านค้า</label>
-                            <input type="text" class="form-control" id="shop_name" name="shop_name" disabled="shop_name"
-                                value="{{ $application->shop_name }}">
-                            @error('shop_name')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="shop_address">ที่อยู่ร้านค้า</label>
-                            <textarea class="form-control" id="shop_address" name="shop_address"
-                                rows="3"  disabled="shop_address" >{{ $application->shop_address }}</textarea>
-                            @error('shop_address')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+    <h4>สินค้า</h4>
+    <p>
+        <strong>ประเภทสินค้า :</strong> {{ $application->product_type }} <br>
 
-@section('script')
-    {{-- toggle toggle_entrepreneur_1 & toggle_entrepreneur_2 --}}
-    <script>
-        $(document).ready(function() {
-            $('#is_not_group').hide();
-            $('#is_entrepreneur_1').click(function() {
-                $('#is_group').show();
-                $('#is_not_group').hide();
-            });
-            $('#is_entrepreneur_2').click(function() {
-                $('#is_group').hide();
-                $('#is_not_group').show();
-            });
-        });
-    </script>
-
-    {{-- if product_type is OTHER show reason --}}
-    <script>
-        $(document).ready(function() {
-            $('#reason_section').hide();
-            $('#product_type').change(function() {
-                if ($(this).val() == 'OTHER') {
-                    $('#reason_section').show();
-                } else {
-                    $('#reason_section').hide();
-                }
-            });
-        });
-    </script>
-
-    {{-- add more product --}}
-    <script>
-        $(document).ready(function() {
-            var i = 1;
-            $('#add_product').click(function() {
-                i++;
-                $('#products_form').append(
-                    '<div class="form-group">' +
-                    '<div class="input-group">' +
-                    '<input type="text" class="form-control" name="products[]" id="product" placeholder="ชื่อผลิตภัณฑ์">' +
-                    '<div class="input-group-append">' +
-                    '<button class="btn btn-ossutline-secondary" type="button" id="remove_product">' +
-                    '<i class="fas fa-minus"></i>' +
-                    '</button>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
-                );
-            });
-            $('#products_form').on('click', '#remove_product', function() {
-                $(this).parent().parent().parent().remove();
-            });
-        });
-    </script>
-@endsection
+    </p>
+    <strong>รายการสินค้า</strong>
+    <ul>
+        @foreach ($application->products as $product)
+            <li>
+                {{ $product->name }}
+            </li>
+        @endforeach
+    </ul>
+</div>

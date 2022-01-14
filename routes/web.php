@@ -95,7 +95,10 @@ Route::delete('/products/{product}', [App\Http\Controllers\ProductController::cl
 
 // resource approvals
 Route::get('/approvals', [App\Http\Controllers\ApprovalController::class, 'index'])->name('approvals.index');
-Route::get('/approvals/create', [App\Http\Controllers\ApprovalController::class, 'create'])->name('approvals.create');
+Route::get('/approvals/create/{application_id}', [App\Http\Controllers\ApprovalController::class, 'create'])->name('approvals.create');
+Route::get('/approvals/application/{application_id}/edit', [App\Http\Controllers\ApprovalController::class, 'editApplication'])->name('approvals.application.edit');
+Route::put('/approvals/application/{application_id}', [App\Http\Controllers\ApprovalController::class, 'updateApplication'])->name('approvals.application.update');
+
 Route::post('/approvals', [App\Http\Controllers\ApprovalController::class, 'store'])->name('approvals.store');
 Route::get('/approvals/{approval}', [App\Http\Controllers\ApprovalController::class, 'show'])->name('approvals.show');
 Route::get('/approvals/{approval}/edit', [App\Http\Controllers\ApprovalController::class, 'edit'])->name('approvals.edit');

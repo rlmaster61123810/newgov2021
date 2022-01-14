@@ -10,7 +10,7 @@ class Approval extends Model
     use HasFactory;
 
     // bills
-    public function bills()
+    public function bill()
     {
         return $this->hasMany(Bill::class);
     }

@@ -14,10 +14,15 @@ class ApplicationController extends Controller
     // index
     public function index()
     {
-        $applications = Application::all();
+        // applications where status is not approved in approval table
+        $applications = Application::whereNotIn('id', function ($query) {
+            $query->select('application_id')->from('approvals');
+        })->orWhereHas('approvals', function ($query) {
+            $query->where('status', '!=', 'approved');
+        })->get();
         return view('applications.index', ['applications' => $applications]);
     }
-    // create
+
     public function create()
     {
         return view('applications.create');
@@ -121,6 +126,7 @@ class ApplicationController extends Controller
         $application->save();
 
         $products = $request->products;
+        $application->products()->delete();
         foreach ($products as $product) {
             $application->products()->insert([
                 'application_id' => $application->id,

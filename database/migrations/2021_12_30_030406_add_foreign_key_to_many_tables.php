@@ -19,7 +19,8 @@ class AddForeignKeyToManyTables extends Migration
 
         // addtedees
         Schema::table('attendees', function (Blueprint $table) {
-            $table->foreign('form_id')->references('id')->on('forms');
+            //    form on delete cascade
+            $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
         });
     }
 

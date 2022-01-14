@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
 {
     use HasFactory;
-
     // approval
     public function approval()
     {
@@ -20,4 +19,5 @@ class Bill extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

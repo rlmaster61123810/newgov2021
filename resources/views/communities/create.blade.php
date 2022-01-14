@@ -73,7 +73,6 @@
                                 </small>
                             @endif
                             {{-- submit --}}
-
                         </div>
                         <button type="submit" class="btn btn-primary">สร้างชุมชน</button>
                     </form>

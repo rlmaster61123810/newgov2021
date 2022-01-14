@@ -20,7 +20,9 @@ class FormController extends Controller
     // create
     public function create()
     {
-        return view('forms.create');
+        $projects = \App\Models\Project::all();
+        $communities = \App\Models\Community::all();
+        return view('forms.create', ['projects' => $projects, 'communities' => $communities]);
     }
     // store
     public function store(Request $request)
@@ -31,6 +33,10 @@ class FormController extends Controller
             'auditor_name' => 'required',
             'auditor_position' => 'required',
             'auditor_phone' => 'required',
+            'type' => 'required',
+            'attendee_detail.*' => 'required',
+            'attendee_detail.*.fullname' => 'required|min:3',
+            'attendee_detail.*.phone' => 'required|min:7',
         ]);
         $form = new Form;
         $form->project_id = $request->project_id;
@@ -39,13 +45,31 @@ class FormController extends Controller
         $form->auditor_position = $request->auditor_position;
         $form->auditor_phone = $request->auditor_phone;
         $form->save();
-        return redirect('/forms')->with('success', 'บันทึกข้อมูลสำเร็จ');
+
+        // attendee
+
+        $attendee = $form->attendee()->create([
+            'form_id' => $form->id,
+            'type' => $request->type,
+        ]);
+
+        // attendee detail
+        foreach ($request->attendee_detail as $key => $value) {
+            $attendee->details()->create([
+                'fullname' => $value['fullname'],
+                'phone' => $value['phone'],
+            ]);
+        }
+
+        return redirect()->route('forms.index')->with('success', 'Form has been created');
     }
     // edit
     public function edit($id)
     {
         $form = Form::find($id);
-        return view('forms.edit', compact('form'));
+        $projects = \App\Models\Project::all();
+        $communities = \App\Models\Community::all();
+        return view('forms.edit', ['form' => $form, 'projects' => $projects, 'communities' => $communities]);
     }
     // update
     public function update(Request $request, $id)
@@ -70,8 +94,11 @@ class FormController extends Controller
     public function show($id)
     {
         $form = Form::find($id);
-        return view('forms.show', compact('form'));
+        $projects = \App\Models\Project::all();
+        $communities = \App\Models\Community::all();
+        return view('forms.show', ['form' => $form, 'projects' => $projects, 'communities' => $communities]);
     }
+
     // destroy
     public function destroy($id)
     {

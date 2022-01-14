@@ -9,6 +9,12 @@ class Attendee extends Model
 {
     use HasFactory;
 
+    // fillable
+    protected $fillable = [
+        'form_id',
+        'type',
+    ];
+
     // form()
     public function form()
     {

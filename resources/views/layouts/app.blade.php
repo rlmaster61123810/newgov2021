@@ -57,77 +57,72 @@
             </div> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-            {{-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li> --}}
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            {{-- <li class="nav-item">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                จัดการข้อมูลโครงการ
+            </div>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>โครงการ</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <h6 class="collapse-header">โครงการ</h6>
+                        <a class="collapse-item" href="{{ route('projects.index') }}">จัดการโครงการ</a>
                     </div>
                 </div>
-            </li> --}}
+            </li>
 
+            <div class="sidebar-heading">
+                จัดการคำร้องผู้ประกอบการ
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>ขอรับรองผู้ประกอบการ</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">ผู้ประกอบการ</h6>
+                        <a class="collapse-item" href="{{ route('applications.index') }}">จัดการผู้ประกอบการ</a>
+
+                    </div>
+                </div>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                จัดการข้อมูล
+                จัดการข้อมูลพื้นฐาน
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>ข้อมูลพื้นฐาน</span>
                 </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">พื้นที่ขาย</h6>
                         <a class="collapse-item" href="{{ route('sale_areas.index') }}">จัดการพื้นที่ขาย</a>
-                        <h6 class="collapse-header">โครงการ</h6>
-                        <a class="collapse-item" href="{{ route('projects.index') }}">จัดการโครงการ</a>
-                        <h6 class="collapse-header">รับรองผู้ประกอบการ</h6>
-                        <a class="collapse-item" href="{{ route('applications.index') }}">จัดการรับรองผู้ประกอบการ</a>
-                        <h6 class="collapse-header">ผู้เข้าร่วมโครงการ</h6>
-                        <a class="collapse-item" href="{{ route('attendees.index') }}">จัดการผู้เข้าร่วมโครงการ</a>
-                        <h6 class="collapse-header">รายละเอียดผู้เข้าร่วมโครงการ</h6>
-                        <a class="collapse-item" href="{{ route('attendee_details.index') }}">จัดการรายละเอียด<br>ผู้เข้าร่วมโครงการ</a>
+                        <h6 class="collapse-header">แบบตอบรับโครงการ</h6>
+                        <a class="collapse-item"
+                            href="{{ route('forms.index') }}">แบบตอบรับโครงการ</a>
                         <h6 class="collapse-header">ชุมชน</h6>
                         <a class="collapse-item" href="{{ route('communities.index') }}">จัดการชุมชน</a>
-                        <h6 class="collapse-header">สินค้า</h6>
-                        <a class="collapse-item" href="{{ route('products.index') }}">จัดการสินค้า</a>
-                        <h6 class="collapse-header">ใบรับรอง</h6>
-                        <a class="collapse-item" href="{{ route('approvals.index') }}">จัดการใบรับรอง</a>
-                        <h6 class="collapse-header">ผู้รับรองผู้ประกอบการ</h6>
-                        <a class="collapse-item" href="{{ route('forms.index') }}">จัดการผู้รับรองผู้ประกอบการ</a>
+                        <h6 class="collapse-header">อนุมัติรับรองผู้ประกอบการ</h6>
+                        <a class="collapse-item"
+                            href="{{ route('approvals.index') }}">จัดการแบบอนุมัติรับรอง<br>ผู้ประกอบการ</a>
                         <h6 class="collapse-header">ใบเสร็จ</h6>
                         <a class="collapse-item" href="{{ route('bills.index') }}">จัดการใบเสร็จ</a>
 
@@ -140,7 +135,10 @@
                     </div>
                 </div>
             </li>
-
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                จัดการข้อมูลโครงการ
+            </div>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/users">
@@ -215,8 +213,9 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
                                     {{-- logout form --}}
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                        document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Logout') }}
                                     </a>

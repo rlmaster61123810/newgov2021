@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">โครงการ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">แก้ไขข้อมูลโครงการ</li>
+                <li class="breadcrumb-item active" aria-current="page">แก้ไขโครงการ</li>
             </ol>
         </ol>
     </nav>
@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">แก้ไขข้อมูลโครงการ</h5>
+                    <h5 class="card-title">แก้ไขโครงการ</h5>
                 </div>
                 <div class="card-body">
                     {{-- edit form --}}
