@@ -110,11 +110,11 @@
                         </div>
                         {{-- result --}}
                         <div class="form-group">
-                            <label for="result">สถานะการดำเนินการ</label>
+                            <label for="result">สถานะ</label>
                             <select id="result" class="form-control" name="result" required>
-                                <option value="processed">ดำเนินการเสร็จสิ้น</option>
-                                <option value="processing">กำลังในดำเนินการ</option>
-                                <option value="unprocessed">ยังไม่ได้ดำเนินการ</option>
+                                <option value="processed">เสร็จสมบูรณ์</option>
+                                <option value="processing">ระหว่างดำเนินการ</option>
+                                <option value="unprocessed">ยังไม่แล้วเสร็จ</option>
                             </select>
                         </div>
                         {{-- kpi --}}

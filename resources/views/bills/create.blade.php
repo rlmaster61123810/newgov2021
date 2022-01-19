@@ -11,37 +11,78 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">เพิ่มใบเสร็จ</h5>
+                    <h4>เพิ่มใบเสร็จ</h4>
                 </div>
                 <div class="card-body">
-                    {{-- has error --}}
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form action="{{ route('bills.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('bills.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="name">ชื่อรายการ</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อรายการ"
-                                value="{{ old('name') }}">
+                            <label for="">รหัสใบเสร็จ</label>
+                            <input type="text" class="form-control" name="code" value="{{ old('code') }}">
+                            @error('code')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
-                        @foreach ($bills as $bill)
-                            <option value="{{ $bill->id }}">{{ $bill->name }}</option>
-                        @endforeach
-                        {{-- approval_id --}}
+                        {{-- approvals --}}
                         <div class="form-group">
-                            <label for="approval_id">ผู้อนุมัติ</label>
-                            <select class="form-control" id="approval_id" name="approval_id">
-                                <option value="">เลือกผู้อนุมัติ</option>
+                            <label for="">ผู้ประกอบการ</label>
+                            <select name="approval_id" class="form-control">
                                 @foreach ($approvals as $approval)
-                                    <option value="{{ $approval->id }}">{{ $approval->name }}</option>
+                                    <option value="{{ $approval->id }}">[{{ $approval->sale_area->name }} {{ $approval->sale_area->location }}] -
+                                        {{ $approval->application->shop_name }}
+                                        ({{ $approval->application->fullname }})</option>
                                 @endforeach
                             </select>
+                            @error('approval_id')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">วันที่</label>
+                            <input type="date" class="form-control" name="date" value="{{ old('date') }}">
+                            @error('date')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">รายการ</label>
+                            <input type="text" class="form-control" name="detail" value="{{ old('detail') }}">
+                            @error('detail')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">จำนวนเงิน</label>
+                            <input type="number" class="form-control" name="amount" value="{{ old('amount') }}">
+                            @error('amount')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">รายละเอียด</label>
+                            <textarea name="detail" id="" cols="30" rows="10"
+                                class="form-control">{{ old('detail') }}</textarea>
+                            @error('detail')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">สถานะ</label>
+                            <select name="status" id="" class="form-control">
+                                <option value="1">ชำระเงินแล้ว</option>
+                                <option value="0">ยังไม่ได้ชำระเงิน</option>
+                            </select>
+                            @error('status')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">สร้างข้อมูลการชำระเงิน</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

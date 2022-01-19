@@ -235,7 +235,7 @@
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">สร้างผู้ประกอบการ</button>
+                        <button type="submit" class="btn btn-primary">แก้ไขข้อมูลผู้ประกอบการ</button>
                     </form>
                 </div>
             </div>

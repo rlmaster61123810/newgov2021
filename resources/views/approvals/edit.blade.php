@@ -65,7 +65,7 @@
                             <label for="comment">หมายเหตุ</label>
                             <textarea class="form-control" name="comment" id="comment" rows="3">{{ $approval->comment }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">สร้างแบบใบรับรองผู้ประกอบการ</button>
+                        <button type="submit" class="btn btn-primary">แก้ไขข้อมูลการอนุมัติ</button>
                     </form>
                 </div>
             </div>

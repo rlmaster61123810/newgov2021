@@ -54,7 +54,6 @@ Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class
 Route::get('/projects/{project}/edit', [App\Http\Controllers\ProjectController::class, 'edit'])->name('projects.edit');
 Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy');
-// delete attachment form  <a href="{{ route('project.destroyAttachment', $project->id) }}" class="btn btn-danger btn-sm">ลบ</a>
 Route::get('/projects/{project}/destroyAttachment', [App\Http\Controllers\ProjectController::class, 'destroyAttachment'])->name('projects.destroyAttachment');
 
 // resource application
@@ -98,7 +97,6 @@ Route::get('/approvals', [App\Http\Controllers\ApprovalController::class, 'index
 Route::get('/approvals/create/{application_id}', [App\Http\Controllers\ApprovalController::class, 'create'])->name('approvals.create');
 Route::get('/approvals/application/{application_id}/edit', [App\Http\Controllers\ApprovalController::class, 'editApplication'])->name('approvals.application.edit');
 Route::put('/approvals/application/{application_id}', [App\Http\Controllers\ApprovalController::class, 'updateApplication'])->name('approvals.application.update');
-
 Route::post('/approvals', [App\Http\Controllers\ApprovalController::class, 'store'])->name('approvals.store');
 Route::get('/approvals/{approval}', [App\Http\Controllers\ApprovalController::class, 'show'])->name('approvals.show');
 Route::get('/approvals/{approval}/edit', [App\Http\Controllers\ApprovalController::class, 'edit'])->name('approvals.edit');
@@ -132,7 +130,13 @@ Route::get('/bills/{bill}/edit', [App\Http\Controllers\BillController::class, 'e
 Route::put('/bills/{bill}', [App\Http\Controllers\BillController::class, 'update'])->name('bills.update');
 Route::delete('/bills/{bill}', [App\Http\Controllers\BillController::class, 'destroy'])->name('bills.destroy');
 
-
+// assign sale area to application
+Route::get('/saleareas', [App\Http\Controllers\ApprovalController::class, 'saleArea'])->name('approvals.salearea');
+Route::get('/assign_sale_area', [App\Http\Controllers\ApprovalController::class, 'assignSaleArea'])->name('assign_sale_area.index');
+Route::get('/saleareas/edit/{approval_id}', [App\Http\Controllers\ApprovalController::class, 'editSaleArea'])->name('assign_sale_area.edit');
+Route::put('/sale_area_edit/{approval_id}', [App\Http\Controllers\ApprovalController::class, 'updateSaleArea'])->name('assign_sale_area.update');
+//  removeSaleArea
+Route::get('/remove_sale_area/{approval_id}', [App\Http\Controllers\ApprovalController::class, 'removeSaleArea'])->name('sale-area.delete');
 
 
 

@@ -81,18 +81,6 @@
                                 <option value="rejected" class="text-danger">&cross; ไม่อนุมัติ</option>
                             </select>
                         </div>
-                        {{-- if approve show from below --}}
-                        <div class="form-group" id="sale_area">
-                            <label for="sale_area_id">สถานที่ขาย</label>
-                            <select class="form-control" name="sale_area_id" id="sale_area_id">
-                                @foreach ($sale_areas as $sale_area)
-                                    <option value="{{ $sale_area->id }}">[{{ $sale_area->name }}]
-                                        {{ $sale_area->location }} - {{ $sale_area->size }} ตารางวา,
-                                        {{ $sale_area->price }} บาท
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <h4>รายละเอียดผู้อนุมัติ</h4>
                         <p class="p-2 border"><strong>ผู้อนุมัติ : </strong> {{ auth()->user()->name }} </p>
                         <div class="form-group">
@@ -108,18 +96,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('#is_approve').change(function() {
-                if ($(this).val() == 'approved') {
-                    $('#sale_area').show();
-                } else {
-                    $('#sale_area').hide();
-                }
-            });
-        });
-    </script>
 @endsection

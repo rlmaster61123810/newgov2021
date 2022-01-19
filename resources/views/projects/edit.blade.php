@@ -108,18 +108,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="result">สถานะผลการอบรม</label>
+                            <label for="result">สถานะ</label>
                             {{-- select --}}
                             <select id="result" class="form-control {{ $errors->has('result') ? ' is-invalid' : '' }}"
                                 name="result" required value={{ $project->result }} name="result" required>
                                 <option value="processed" {{ $project->result == 'processed' ? 'selected' : '' }}>
-                                    ดำเนินงานเรียบร้อยแล้ว
+                                    เสร็จสมบูรณ์
                                 </option>
                                 <option value="processing" {{ $project->result == 'processing' ? ' selected' : '' }}>
-                                    ระหว่างดำเนินงาน
+                                    ระหว่างดำเนินการ
                                 </option>
                                 <option value="unprocessed" {{ $project->result == 'unprocessed' ? 'selected' : '' }}>
-                                    ยังไม่ได้ดำเนินงาน
+                                    ยังไม่แล้วเสร็จ
                                 </option>
                             </select>
                         </div>

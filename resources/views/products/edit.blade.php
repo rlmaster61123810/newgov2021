@@ -34,7 +34,7 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">สร้างสินค้า</button>
+                        <button type="submit" class="btn btn-primary">แก้ไขข้อมูลสินค้า</button>
                     </form>
                 </div>
             </div>

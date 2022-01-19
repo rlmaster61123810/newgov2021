@@ -6,6 +6,7 @@ use App\Models\Application;
 use App\Models\Approval;
 use App\Models\SaleArea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApprovalController extends Controller
 {
@@ -28,12 +29,7 @@ class ApprovalController extends Controller
     {
         $application = Application::find($id);
 
-        // sale area where sale_area_id is not in approval table
-        $sale_areas = SaleArea::whereNotIn('id', function ($query) {
-            $query->select('sale_area_id')->from('approvals');
-        })->get();
-
-        return view('approvals.create', ['sale_areas' => $sale_areas, 'application' => $application]);
+        return view('approvals.create', ['application' => $application]);
     }
 
     public function editApplication($id)
@@ -98,7 +94,6 @@ class ApprovalController extends Controller
         $approval->application_id = $request->application_id;
         $approval->status = $request->status;
         $approval->user_id = auth()->user()->id;
-        $approval->sale_area_id = $request->sale_area_id;
         $approval->comment = $request->comment;
 
         $approval->save();
@@ -119,9 +114,8 @@ class ApprovalController extends Controller
     {
         $approval = Approval::find($id);
         $users = \App\Models\User::all();
-        $sale_areas = \App\Models\SaleArea::all();
         $applications = \App\Models\Application::all();
-        return view('approvals.edit', ['approval' => $approval, 'users' => $users, 'sale_areas' => $sale_areas, 'applications' => $applications]);
+        return view('approvals.edit', ['approval' => $approval, 'users' => $users, 'applications' => $applications]);
     }
     // update
     public function update(Request $request, $id)
@@ -129,14 +123,12 @@ class ApprovalController extends Controller
         $request->validate([
             'application_id' => 'required',
             'user_id' => 'required',
-            'sale_area_id' => 'required',
             'comment' => 'required',
 
         ]);
         $approval = Approval::find($id);
         $approval->application_id = $request->application_id;
         $approval->user_id = $request->user_id;
-        $approval->sale_area_id = $request->sale_area_id;
         $approval->comment = $request->comment;
         $approval->save();
 
@@ -148,9 +140,8 @@ class ApprovalController extends Controller
     {
         $approval = Approval::find($id);
         $users = \App\Models\User::all();
-        $sale_areas = \App\Models\SaleArea::all();
         $applications = \App\Models\Application::all();
-        return view('approvals.show', ['approval' => $approval, 'users' => $users, 'sale_areas' => $sale_areas, 'applications' => $applications]);
+        return view('approvals.show', ['approval' => $approval, 'users' => $users, 'applications' => $applications]);
     }
     // destroy
     public function destroy($id)
@@ -158,5 +149,58 @@ class ApprovalController extends Controller
         $approval = Approval::find($id);
         $approval->delete();
         return redirect()->route('approvals.index');
+    }
+
+    // saleArea
+    public function saleArea()
+    {
+        $filter = request()->filter;
+        if ($filter == 1) {
+            $approves = Approval::where('status', 'approved')
+                ->where('sale_area_id', '=', null)
+                ->get();
+        } elseif ($filter == 2) {
+            $approves = Approval::where('status', 'approved')
+                ->where('sale_area_id', '!=', null)
+                ->get();
+        } else {
+            $approves = Approval::where('status', 'approved')->get();
+        }
+        return view('approvals.sale_area', ['approves' => $approves, 'filter' => $filter]);
+    }
+
+    public function editSaleArea($id)
+    {
+        $approval = Approval::find($id);
+        $saleAreas = SaleArea::whereNotIn('id', function ($query) {
+            $query->select('sale_area_id')->from('approvals')->where('sale_area_id', '!=', null);
+        })->get();
+
+        return view('approvals.edit_sale_area', [
+            'approval' => $approval,
+            'saleAreas' => $saleAreas,
+        ]);
+    }
+
+    public function updateSaleArea(Request $request, $id)
+    {
+
+        $request->validate([
+            'sale_area_id' => 'required',
+        ]);
+        $approval = Approval::find($id);
+        $approval->sale_area_id = $request->sale_area_id;
+        $approval->save();
+
+        return redirect()->route('approvals.salearea')->with('success', 'ข้อมูลถูกบันทึกแล้ว');
+    }
+
+    public function removeSaleArea($id)
+    {
+        $approval = Approval::find($id);
+        $approval->sale_area_id = null;
+        $approval->save();
+
+        return redirect()->route('approvals.salearea')->with('success', 'ข้อมูลถูกบันทึกแล้ว');
     }
 }

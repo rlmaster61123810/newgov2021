@@ -18,8 +18,8 @@
                     <form action="{{ route('sale_areas.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="name">ชื่อผู้ประกอบการ	</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="เพิ่มชื่อผู้ประกอบการ	">
+                            <label for="name">ชื่อพื้นที่ขาย	</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อพื้นที่ขาย	">
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

@@ -39,9 +39,6 @@
                                                         ชื่อชุมชน
                                                     </th>
                                                     <th>
-                                                        หมู่
-                                                    </th>
-                                                    <th>
                                                         อำเภอ
                                                     </th>
                                                     <th>
@@ -57,7 +54,6 @@
                                                     <tr>
                                                         <td>{{ $community->code }}</td>
                                                         <td>{{ $community->village }}</td>
-                                                        <td>{{ $community->moo }}</td>
                                                         <td>{{ $community->district }}</td>
                                                         <td>{{ $community->sub_district }}</td>
                                                         <td>

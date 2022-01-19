@@ -18,7 +18,7 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">ชื่อผู้ประกอบการ</label>
+                            <label for="name">ชื่อพื้นที่ขาย</label>
                             <input type="text" class="form-control" id="name" name="name"
                                 value="{{ $sale_area->name }}" disabled="name">
                             @error('name')

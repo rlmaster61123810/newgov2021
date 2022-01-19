@@ -16,15 +16,12 @@ class BillController extends Controller
     {
         $bills = Bill::all();
         return view('bills.index', compact('bills'));
-
     }
     // create
     public function create()
     {
-        $bills = \App\Models\Bill::all();
-        $approvals = \App\Models\Approval::all();
-        $users = \App\Models\User::all();
-        return view('bills.create', ['bills' => $bills, 'approvals' => $approvals, 'users' => $users]);
+        $approvals = \App\Models\Approval::where('status', '=', 'approved')->get();
+        return view('bills.create', ['approvals' => $approvals]);
     }
     // store
     public function store(Request $request)
@@ -91,15 +88,4 @@ class BillController extends Controller
         $bill->delete();
         return redirect('/bills')->with('success', 'Bill deleted successfully');
     }
-
-
-
-
-
-
-
-
-
-
-
 }

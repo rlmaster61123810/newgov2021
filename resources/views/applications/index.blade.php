@@ -60,13 +60,13 @@
                                                     {{-- <a href="/approvals/create/{{$application->id}}"
                                                                 class="btn btn-sm btn-info">จัดการอนุมัติ</a> --}}
 
-                                                    <button type="button" class="btn btn-info btn-sm show"
-                                                        data-id="{{ $application->id }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </button>
+                                                    <a href="{{ route('sale_areas.show', $application->id) }}"
+                                                        class="btn btn-info btn-sm">
+                                                        แสดงข้อมูล
+                                                    </a>
                                                     <a href="{{ route('applications.edit', $application->id) }}"
-                                                        class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-edit"></i>
+                                                        class="btn btn-primary btn-sm">
+                                                        แก้ไข
                                                     </a>
                                                     <form action="{{ route('applications.destroy', $application->id) }}"
                                                         method="POST" class="d-inline">
@@ -75,7 +75,7 @@
                                                         <button type="submit"
                                                             onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
                                                             class="btn btn-danger btn-sm">
-                                                            <i class="fas fa-trash"></i>
+                                                            ลบ
                                                         </button>
                                                     </form>
                                                 </td>

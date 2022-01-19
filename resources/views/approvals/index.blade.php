@@ -93,9 +93,6 @@
                                                                 ชื่อผู้ประกอบการ
                                                             </th>
                                                             <th>
-                                                                สถานที่ขาย
-                                                            </th>
-                                                            <th>
                                                                 สถานะ
                                                             </th>
                                                             <th>
@@ -112,9 +109,7 @@
                                                                 <td>
                                                                     {{ $reject->application->fullname }}
                                                                 </td>
-                                                                <td>
-                                                                    {{ $reject->sale_area->location }}
-                                                                </td>
+
                                                                 <td>
                                                                     <span class="badge badge-danger">ไม่อนุมัติ</span>
                                                                 <td>
@@ -161,9 +156,6 @@
                                                                 ชื่อผู้ประกอบการ
                                                             </th>
                                                             <th>
-                                                                สถานที่ขาย
-                                                            </th>
-                                                            <th>
                                                                 สถานะ
                                                             </th>
                                                             <th>
@@ -179,9 +171,6 @@
                                                             <tr>
                                                                 <td>
                                                                     {{ $approve->application->fullname }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $approve->sale_area->location }}
                                                                 </td>
                                                                 <td>
                                                                     @if ($approve->status == 'approved')

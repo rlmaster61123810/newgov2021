@@ -42,7 +42,7 @@
                                                         สถานที่
                                                     </th>
                                                     <th>
-                                                        สถานะผลการอบรม
+                                                        สถานะ
                                                     </th>
                                                     <th>
                                                         จัดการข้อมูล
@@ -57,16 +57,14 @@
                                                         <td>{{ $project->location }}</td>
                                                         <td>
                                                             @if ($project->result == 'processed')
-                                                                <span class="badge badge-success">อบรมเสร็จสมบูรณ์</span>
+                                                                <span class="badge badge-success">เสร็จสมบูรณ์</span>
                                                             @elseif($project->result == 'processing')
-                                                                <span
-                                                                    class="badge badge-warning">อบรมยังไม่เสร็จสมบูรณ์</span>
+                                                                <span class="badge badge-warning">ระหว่างดำเนินการ</span>
                                                             @elseif($project->result == 'unprocessed')
-                                                                <span class="badge badge-danger">ยังไม่อบรม</span>
+                                                                <span class="badge badge-danger">ยังไม่แล้วเสร็จ</span>
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            {{-- show --}}
                                                             <a href="{{ route('projects.show', $project->id) }}"
                                                                 class="btn btn-info btn-sm">แสดงข้อมูล
                                                             </a>

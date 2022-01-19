@@ -35,7 +35,7 @@
                                             <thead class=" text-primary">
                                                 <tr>
                                                     <th>
-                                                        ชื่อผู้ประกอบการ
+                                                        ชื่อพื้นที่ขาย
                                                     </th>
                                                     <th>
                                                         สถานที่ขาย
@@ -64,6 +64,11 @@
                                                                 class="btn btn-info btn-sm">
                                                                 แสดงข้อมูล
                                                             </a>
+                                                            {{-- ยกเลิกการจอง --}}
+                                                            <a href="{{ route('sale_areas.edit', $sale_area->id) }}"
+                                                                class="btn btn-warning btn-sm">
+                                                                ยกเลิกการจอง
+                                                            </a>
                                                             <a href="{{ route('sale_areas.edit', $sale_area->id) }}"
                                                                 class="btn btn-primary btn-sm">
                                                                 แก้ไข
@@ -73,7 +78,9 @@
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                <button type="submit"
+                                                                    onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
+                                                                    class="btn btn-danger btn-sm">
                                                                     ลบ
                                                                 </button>
                                                             </form>

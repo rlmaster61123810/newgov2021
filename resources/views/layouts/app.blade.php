@@ -45,7 +45,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>ยินดีต้อนรับเข้าสู่ระบบ</span></a>
             </li>
 
             <!-- Divider -->
@@ -76,7 +76,6 @@
                     </div>
                 </div>
             </li>
-
             <div class="sidebar-heading">
                 จัดการคำร้องผู้ประกอบการ
             </div>
@@ -94,8 +93,30 @@
                         <h6 class="collapse-header">อนุมัติรับรองผู้ประกอบการ</h6>
                         <a class="collapse-item"
                             href="{{ route('approvals.index') }}">จัดการแบบอนุมัติรับรอง<br>ผู้ประกอบการ</a>
-
                     </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                จัดการข้อมูลจัดสรรพื้นที่ขาย
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>จัดสรรพื้นที่ขาย</span>
+                </a>
+                <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">จัดสรรพื้นที่ขาย</h6>
+                        <a class="collapse-item" href="{{ route('approvals.salearea') }}">จัดการจัดสรรพื้นที่ขาย</a>
+                        <h6 class="collapse-header">จัดการการชำระเงิน</h6>
+                        <a class="collapse-item" href="{{ route('bills.index') }}">จัดการการชำระเงิน</a>
+                    </div>
+
                 </div>
             </li>
             <!-- Divider -->
@@ -122,13 +143,6 @@
                         <a class="collapse-item" href="{{ route('forms.index') }}">แบบตอบรับโครงการ</a>
                         <h6 class="collapse-header">ชุมชน</h6>
                         <a class="collapse-item" href="{{ route('communities.index') }}">จัดการชุมชน</a>
-
-                        {{-- <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item active" href="blank.html">Blank Page</a> --}}
                     </div>
                 </div>
             </li>
@@ -212,7 +226,7 @@
                                     {{-- logout form --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Logout') }}
                                     </a>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>C.S.S.D.CM</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -79,12 +79,12 @@
 
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">ลืมรหัสผ่าน ?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="register.html">สร้างบัญชีใหม่</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

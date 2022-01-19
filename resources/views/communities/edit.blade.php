@@ -76,7 +76,7 @@
                             {{-- submit --}}
 
                         </div>
-                        <button type="submit" class="btn btn-primary">สร้างชุมชน</button>
+                        <button type="submit" class="btn btn-primary">แก้ไขข้อมูลชุมชน</button>
                     </form>
                 </div>
             </div>
