@@ -12,8 +12,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>รายการใบเสร็จ
-                                <a href="{{ route('bills.create') }}" class="btn btn-primary float-right">เพิ่มใบเสร็จ
+                            <h3>รายการใบชำระเงิน
+                                <a href="{{ route('bills.create') }}" class="btn btn-primary float-right">เพิ่มใบชำระเงิน
                                 </a>
                             </h3>
                         </div>
@@ -36,6 +36,9 @@
                                                         ชื่อรายการ
                                                     </th>
                                                     <th>
+                                                        ร้านค้า
+                                                    </th>
+                                                    <th>
                                                         จำนวนเงิน
                                                     </th>
                                                     <th>
@@ -53,13 +56,16 @@
                                                 @foreach ($bills as $bill)
                                                     <tr>
                                                         <td>
-                                                            {{ $bill->application->fullname }}
+                                                            {{ $bill->name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $bill->approval->application->shop_name }}
                                                         </td>
                                                         <td>
                                                             {{ $bill->price }}
                                                         </td>
                                                         <td>
-                                                            {{ $approval->user->name }}
+                                                            {{ $bill->user->name }}
                                                         </td>
                                                         <td>
                                                             {{-- status  bills paid --}}
@@ -70,20 +76,19 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            {{-- show --}}
-                                                            <a href="{{ route('bills.show', $project->id) }}"
-                                                                class="btn btn-info btn-sm">แสดงข้อมูล
-                                                            </a>
-                                                            <a href="{{ route('bills.edit', $project->id) }}"
-                                                                class="btn btn-primary btn-sm">แก้ไข</a>
-                                                            <form action="{{ route('bills.destroy', $project->id) }}"
+                                                            <a href="{{ route('bills.show', $bill->id) }}"
+                                                                class="btn btn-sm btn-info">ดูข้อมูล</a>
+                                                            <a href="{{ route('bills.edit', $bill->id) }}"
+                                                                class="btn btn-sm btn-warning">แก้ไข</a>
+                                                            <form action="{{ route('bills.destroy', $bill->id) }}"
                                                                 method="POST" class="d-inline">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
-                                                                    class="btn btn-danger btn-sm">ลบ</button>
+                                                                onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
+                                                                    class="btn btn-sm btn-danger">ลบ</button>
                                                             </form>
+
                                                         </td>
                                                     </tr>
                                                 @endforeach
