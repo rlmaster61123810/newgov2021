@@ -121,14 +121,12 @@ class ApprovalController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'application_id' => 'required',
-            'user_id' => 'required',
+            'status' => 'required|in:approved,rejected',
             'comment' => 'required',
 
         ]);
         $approval = Approval::find($id);
-        $approval->application_id = $request->application_id;
-        $approval->user_id = $request->user_id;
+        $approval->status = $request->status;
         $approval->comment = $request->comment;
         $approval->save();
 

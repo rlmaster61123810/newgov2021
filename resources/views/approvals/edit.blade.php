@@ -28,42 +28,31 @@
                     <form action="{{ route('approvals.update', $approval->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
-                            <label for="application_id">ชื่อผู้ประกอบการ</label>
-                            <select class="form-control" name="application_id" id="application_id">
-                                @foreach ($applications as $application)
-                                    <option value="{{ $application->id }}"
-                                        {{ $application->id == $approval->application_id ? 'selected' : '' }}>
-                                        {{ $application->fullname }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="sale_area_id">สถานที่ขาย</label>
-                            <select class="form-control" name="sale_area_id" id="sale_area_id">
-                                @foreach ($sale_areas as $sale_area)
-                                    <option value="{{ $sale_area->id }}"
-                                        {{ $sale_area->id == $approval->sale_area_id ? 'selected' : '' }}>
-                                        {{ $sale_area->location }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_id">ผู้อนุมัติ</label>
-                            <select class="form-control" name="user_id" id="user_id">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        {{ $user->id == $approval->user_id ? 'selected' : '' }}>
-                                        {{ $user->name }}</option>
+                        @method('PUT')
 
-                                @endforeach
+                        <div class="form-group">
+                            <label for="is_approve">การอนุมัติ</label>
+                            <select name="status" id="is_approve" class="form-control">
+                                <option value="approved" class="text-success" @if ($approval->status == 'approved')
+                                    selected
+                                    @endif
+                                    >&check; อนุมัติ</option>
+                                <option value="rejected" class="text-danger" @if ($approval->status == 'rejected')
+                                    selected
+                                    @endif
+                                    >&cross; ไม่อนุมัติ</option>
+                                >&cross; ไม่อนุมัติ</option>
                             </select>
                         </div>
-                        {{-- commet --}}
+                        <h4>รายละเอียดผู้อนุมัติ</h4>
+                        <p class="p-2 border"><strong>ผู้อนุมัติ : </strong> {{ auth()->user()->name }} </p>
                         <div class="form-group">
                             <label for="comment">หมายเหตุ</label>
-                            <textarea class="form-control" name="comment" id="comment" rows="3">{{ $approval->comment }}</textarea>
+                            <textarea class="form-control" name="comment" id="comment"
+                                rows="3">{{ $approval->comment }}</textarea>
+                            @error('comment')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">แก้ไขข้อมูลการอนุมัติ</button>
                     </form>

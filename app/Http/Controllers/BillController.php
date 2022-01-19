@@ -59,9 +59,13 @@ class BillController extends Controller
     public function edit($id)
     {
         $bill = Bill::find($id);
-        $approvals = \App\Models\Approval::all();
-        $users = \App\Models\User::all();
-        return view('bills.edit', ['bill' => $bill, 'approvals' => $approvals, 'users' => $users]);
+        $approvals = Approval::whereNotNull('sale_area_id')
+            ->whereNotIn('id', function ($query) {
+                $query->select('approval_id')
+                    ->from('bills');
+            })
+            ->get();
+        return view('bills.edit', ['bill' => $bill, 'approvals' => $approvals]);
     }
     // update
     public function update(Request $request, $id)
@@ -69,22 +73,25 @@ class BillController extends Controller
         $request->validate([
             'name' => 'required',
             'approval_id' => 'required',
-            'user_id' => 'required',
             'price' => 'required',
             'amount' => 'required',
             'payment_method' => 'required',
+            'paid' => 'required',
         ]);
+
         $bill = Bill::find($id);
         $bill->name = $request->name;
         $bill->approval_id = $request->approval_id;
-        $bill->user_id = $request->user_id;
+        $bill->user_id = auth()->user()->id;
         $bill->price = $request->price;
         $bill->amount = $request->amount;
+        $bill->paid = $request->paid;
         $bill->payment_method = $request->payment_method;
         $bill->comment = $request->comment;
         $bill->save();
         return redirect('/bills')->with('success', 'Bill updated successfully');
     }
+
     // show
     public function show($id)
     {

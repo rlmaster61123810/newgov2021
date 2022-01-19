@@ -66,7 +66,7 @@
                                             <tbody>
                                                 @foreach ($applications as $application)
                                                     <tr>
-                                                        <td>{{ $application->fullname }}</td>
+                                                        <td>{{ $application->fullname }} - {{ $application->fullname }}</td>
                                                         <td>{{ $application->phone }}</td>
                                                         <td>{{ $application->shop_name }}</td>
                                                         <td>{{ $application->product_type }}</td>
@@ -107,7 +107,7 @@
                                                         @foreach ($rejects as $reject)
                                                             <tr>
                                                                 <td>
-                                                                    {{ $reject->application->fullname }}
+                                                                    {{ $reject->application->fullname }} - {{ $reject->application->fullname }}
                                                                 </td>
 
                                                                 <td>
@@ -170,7 +170,7 @@
                                                         @foreach ($approves as $approve)
                                                             <tr>
                                                                 <td>
-                                                                    {{ $approve->application->fullname }}
+                                                                    {{ $approve->application->shop_name }} -  {{ $approve->application->fullname }}
                                                                 </td>
                                                                 <td>
                                                                     @if ($approve->status == 'approved')
@@ -190,7 +190,7 @@
                                                                         class="btn btn-primary btn-sm">
                                                                         แก้ไขการอนุมัติ
                                                                     </a>
-                                                                    <form
+                                                                    {{-- <form
                                                                         action="{{ route('approvals.destroy', $approve->id) }}"
                                                                         method="POST" class="d-inline">
                                                                         @csrf
@@ -200,7 +200,7 @@
                                                                             class="btn btn-danger btn-sm">
                                                                             ลบ
                                                                         </button>
-                                                                    </form>
+                                                                    </form> --}}
                                                                 </td>
                                                             </tr>
                                                         @endforeach
