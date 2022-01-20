@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use Illuminate\Http\Request;
+use PDF;
 
 class ApplicationController extends Controller
 {
@@ -22,6 +23,14 @@ class ApplicationController extends Controller
         })->get();
         return view('applications.index', ['applications' => $applications]);
     }
+    // make downloadPDF
+    public function downloadPDF($id)
+    {
+        $application = Application::find($id);
+        $pdf = 'PDF'::loadView('applications.pdf', compact('application'));
+        return $pdf->download('application.pdf');
+    }
+
 
     public function create()
     {

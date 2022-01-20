@@ -138,16 +138,8 @@ Route::put('/sale_area_edit/{approval_id}', [App\Http\Controllers\ApprovalContro
 //  removeSaleArea
 Route::get('/remove_sale_area/{approval_id}', [App\Http\Controllers\ApprovalController::class, 'removeSaleArea'])->name('sale-area.delete');
 
-
-
-
-
-
-
-
-
-
-
+// pdf
+Route::get('/pdf/{downloadPDF_id}', [App\Http\Controllers\PdfController::class, 'index']);
 
 
 
