@@ -231,5 +231,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    'providers' => [
+        // ...
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class
+    ]
+    'aliases' => [
+        // ...
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
+    ]
 ];

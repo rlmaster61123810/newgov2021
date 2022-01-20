@@ -1,5 +1,11 @@
-{{-- has_idcard --}}
-{{-- check icon --}}
+<?php
+require_once __DIR__ . '/vendor/autoload.php';
+$mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/tmp']);
+$mpdf = new Mpdf();
+ob_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,10 +118,17 @@
                     </li>
             </div>
         </div>
+
+<?php
+$html = ob_get_contents();
+$mpdf->WriteHTML($html);
+$mpdf->Output('MyReport.pdf');
+ob_end_flush();
+?>
         <div class="row justify-content-center">
             <div class="col-md-6-content-center">
                 <a href="{{ route('applications.index') }}" class="btn btn-primary btn-sm">ย้อนกลับ</a>
-                <a href="{{ route('applications.index') }}" class="btn btn-warning btn-sm">ดาวน์โหลดเอกสาร</a>
+                <a href="MyReport.pdf" class="btn btn-warning btn-sm">ดาวน์โหลดเอกสาร</a>
             </div>
         </div>
 </body>

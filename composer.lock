@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16dbf115286218ed875dbd3c0eefe640",
+    "content-hash": "7ce6482e86f1038505d9a4b20118e023",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,62 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "carlos-meneses/laravel-mpdf",
+            "version": "2.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mccarlosen/laravel-mpdf.git",
+                "reference": "9f43cfa3ae960589c3898a052c38cd425184a871"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mccarlosen/laravel-mpdf/zipball/9f43cfa3ae960589c3898a052c38cd425184a871",
+                "reference": "9f43cfa3ae960589c3898a052c38cd425184a871",
+                "shasum": ""
+            },
+            "require": {
+                "mpdf/mpdf": "^8.0.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Meneses\\LaravelMpdf\\LaravelMpdfServiceProvider"
+                    ],
+                    "aliases": {
+                        "PDF": "Meneses\\LaravelMpdf\\Facades\\LaravelMpdf"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Meneses\\LaravelMpdf\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Mpdf: Using Mpdf in Laravel to generate Pdfs.",
+            "keywords": [
+                "laravel",
+                "mpdf",
+                "pdf"
+            ],
+            "support": {
+                "issues": "https://github.com/mccarlosen/laravel-mpdf/issues",
+                "source": "https://github.com/mccarlosen/laravel-mpdf/tree/2.1.8"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/mccarlosen",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-11-25T20:13:02+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1819,16 +1875,16 @@
         },
         {
             "name": "mpdf/mpdf",
-            "version": "v8.0.15",
+            "version": "v8.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpdf/mpdf.git",
-                "reference": "d8a5294a6cc2e814c4157aecc8d7ac25014b18ed"
+                "reference": "5f64118317c8145c0abc606b310aa0a66808398a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/d8a5294a6cc2e814c4157aecc8d7ac25014b18ed",
-                "reference": "d8a5294a6cc2e814c4157aecc8d7ac25014b18ed",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/5f64118317c8145c0abc606b310aa0a66808398a",
+                "reference": "5f64118317c8145c0abc606b310aa0a66808398a",
                 "shasum": ""
             },
             "require": {
@@ -1890,7 +1946,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-11-10T08:15:22+00:00"
+            "time": "2022-01-20T10:51:40+00:00"
         },
         {
             "name": "myclabs/deep-copy",
