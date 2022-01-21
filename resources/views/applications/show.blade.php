@@ -114,10 +114,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6-content-center">
             <a href="{{ route('applications.index') }}" class="btn btn-primary btn-sm">ย้อนกลับ</a>
-            {{-- download PDF --}}
-            <a href="{{ route('applications.downloadPDF', $application->id) }}" class="btn btn-success btn-sm">ดาวน์โหลดเอกสาร</a>
-
-
+            {{-- downloadPDF --}}
+            <a href="{{ route('application.downloadPDF', $application->id) }}" class="btn btn-primary btn-sm">ดาวน์โหลดเอกสาร</a>
         </div>
     </div>
 </body>
