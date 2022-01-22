@@ -26,30 +26,8 @@ class ApplicationController extends Controller
         })->get();
         return view('applications.index', ['applications' => $applications]);
     }
-    public function downloadPDF($id)
-    {
 
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        $application = Application::find($id);
-
-        $view = \View::make('applications.show', compact('application'));
-
-        $html = $view->render();
-
-        $pdf = new PDF();
-
-        $pdf::SetTitle('Report');
-
-        $pdf->AddPage();
-
-        $pdf::SetFont('freeserif', '', 9);
-
-        $pdf::writeHTML($html, true, false, true, false, '');
-
-        $pdf::Output('report.pdf');
-    }
-
-    public function create()
+        public function create()
     {
         return view('applications.create');
     }

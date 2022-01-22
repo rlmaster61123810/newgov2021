@@ -138,9 +138,8 @@ Route::put('/sale_area_edit/{approval_id}', [App\Http\Controllers\ApprovalContro
 //  removeSaleArea
 Route::get('/remove_sale_area/{approval_id}', [App\Http\Controllers\ApprovalController::class, 'removeSaleArea'])->name('sale-area.delete');
 
-//downloadPDF
-Route::get('/application/{application}/downloadPDF', [App\Http\Controllers\ApplicationController::class, 'downloadPDF'])->name('application.downloadPDF');
-
+// applications show
+Route::get('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'show'])->name('applications.show');
 
 
 
