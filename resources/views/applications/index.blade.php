@@ -60,7 +60,8 @@
                                                     {{-- <a href="/approvals/create/{{$application->id}}"
                                                                 class="btn btn-sm btn-info">จัดการอนุมัติ</a> --}}
 
-                                                    <a href="{{ route('applications.show', $application->id) }}"
+                                                    <a href="{{ route('applications.pdf', $application->id) }}"
+                                                        target="_blank"
                                                         class="btn btn-info btn-sm">
                                                         แสดงข้อมูล
                                                     </a>

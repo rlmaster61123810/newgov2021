@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Approval;
 use App\Models\Bill;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BillController extends Controller
 {
@@ -20,6 +21,16 @@ class BillController extends Controller
 
         return view('bills.index', ['bills' => $bills]);
     }
+
+    // export xlsx
+    public function export()
+    {
+        $bills = Bill::all();
+
+        return Excel::download(new \App\Exports\BillExport($bills), 'bills.xlsx');
+    }
+
+
     // create
     public function create()
     {

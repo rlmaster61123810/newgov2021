@@ -28,6 +28,12 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-12">
+                                    {{-- download xslx --}}
+                                    <a href="{{ route('projects.export') }}" class="btn btn-success">
+                                        <i class="fa fa-file-excel-o"></i>
+                                        ดาวน์โหลดไฟล์ Excel
+                                    </a>
+                                    {{-- end download xslx --}}
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover ">
                                             <thead class=" text-primary">

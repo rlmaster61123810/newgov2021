@@ -101,15 +101,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="role" class="col-md-4 col-form-label text-md-right">สิทธิ์การใช้งาน</label>
                                 <div class="col-md-6">
                                     <select id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}"
                                         name="role" required>
-                                        <option value="">เลือกสิทธิ์การใช้งาน</option>
                                         <option value="admin" {{ $user->role == 'ADMIN' ? 'selected' : '' }}>ผู้ดูแลระบบ
-                                        </option>
-                                        <option value="user" {{ $user->role == 'USER' ? 'selected' : '' }}>ผู้ใช้งาน
                                         </option>
                                     </select>
                                     @if ($errors->has('role'))
@@ -118,7 +115,9 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
+                            {{-- hidden role=admin --}}
+                            <input type="hidden" name="role" value="admin">
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

@@ -109,8 +109,6 @@
                                         <option value="">เลือกสิทธิ์การใช้งาน</option>
                                         <option value="admin" {{ $user->role == 'ADMIN' ? 'selected' : '' }}>ผู้ดูแลระบบ
                                         </option>
-                                        <option value="user" {{ $user->role == 'USER' ? 'selected' : '' }}>ผู้ใช้งาน
-                                        </option>
                                     </select>
                                     @if ($errors->has('role'))
                                         <span class="invalid-feedback" role="alert">

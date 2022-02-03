@@ -29,6 +29,15 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
+                                        {{-- export xslx --}}
+                                        <div class="float-right">
+                                            <form action="{{ route('bills.export') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-file-excel"></i>
+                                                    ส่งออกไฟล์ Excel
+                                                </button>
+                                            </form>
                                         <table class="table table-striped table-hover ">
                                             <thead class=" text-primary">
                                                 <tr>

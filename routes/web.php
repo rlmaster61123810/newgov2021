@@ -55,6 +55,8 @@ Route::get('/projects/{project}/edit', [App\Http\Controllers\ProjectController::
 Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy');
 Route::get('/projects/{project}/destroyAttachment', [App\Http\Controllers\ProjectController::class, 'destroyAttachment'])->name('projects.destroyAttachment');
+// export xlsx
+Route::get('/projects-export', [App\Http\Controllers\ProjectController::class, 'export'])->name('projects.export');
 
 // resource application
 Route::get('/applications', [App\Http\Controllers\ApplicationController::class, 'index'])->name('applications.index');
@@ -64,6 +66,8 @@ Route::get('/applications/{application}', [App\Http\Controllers\ApplicationContr
 Route::get('/applications/{application}/edit', [App\Http\Controllers\ApplicationController::class, 'edit'])->name('applications.edit');
 Route::put('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'update'])->name('applications.update');
 Route::delete('/applications/{application}', [App\Http\Controllers\ApplicationController::class, 'destroy'])->name('applications.destroy');
+// pdf
+Route::get('/applications/download/{id}', [App\Http\Controllers\ApplicationController::class, 'pdf'])->name('applications.pdf');
 
 // resource attendee
 Route::get('/attendees', [App\Http\Controllers\AttendeeController::class, 'index'])->name('attendees.index');
@@ -129,6 +133,8 @@ Route::get('/bills/{bill}', [App\Http\Controllers\BillController::class, 'show']
 Route::get('/bills/{bill}/edit', [App\Http\Controllers\BillController::class, 'edit'])->name('bills.edit');
 Route::put('/bills/{bill}', [App\Http\Controllers\BillController::class, 'update'])->name('bills.update');
 Route::delete('/bills/{bill}', [App\Http\Controllers\BillController::class, 'destroy'])->name('bills.destroy');
+// export
+Route::post('/bills/export', [App\Http\Controllers\BillController::class, 'export'])->name('bills.export');
 
 // assign sale area to application
 Route::get('/saleareas', [App\Http\Controllers\ApprovalController::class, 'saleArea'])->name('approvals.salearea');

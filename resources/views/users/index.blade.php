@@ -32,9 +32,9 @@
                                     <th>
                                         Email
                                     </th>
-                                    <th>
+                                    {{-- <th>
                                         สถานะ
-                                    </th>
+                                    </th> --}}
                                     <th>
                                         จัดการข้อมูล
                                     </th>
@@ -54,9 +54,9 @@
                                             <td>
                                                 {{ $user->email }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $user->role }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{-- show --}}
                                                 <a href="{{ route('users.show', $user->id) }}"

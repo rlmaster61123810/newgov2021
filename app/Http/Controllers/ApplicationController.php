@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
-use Elibyy\TCPDF\Facades\TCPDF;
 use Illuminate\Http\Request;
-use PDF;
-
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApplicationController extends Controller
 {
@@ -27,7 +24,7 @@ class ApplicationController extends Controller
         return view('applications.index', ['applications' => $applications]);
     }
 
-        public function create()
+    public function create()
     {
         return view('applications.create');
     }
@@ -93,6 +90,16 @@ class ApplicationController extends Controller
     {
         return view('applications.show', ['application' => $application]);
     }
+
+    // download pdf
+    public function pdf($id)
+    {
+        $application = Application::find($id);
+        // return view('applications.pdf', ['application' => $application]);
+        $pdf = Pdf::loadView('applications.pdf', ['application' => $application]);
+        return $pdf->stream();
+    }
+
     // edit
     public function edit(Application $application)
     {
