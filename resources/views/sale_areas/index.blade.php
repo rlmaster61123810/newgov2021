@@ -66,10 +66,6 @@
                                                             </a>
                                                             {{-- ยกเลิกการจอง --}}
                                                             <a href="{{ route('sale_areas.edit', $sale_area->id) }}"
-                                                                class="btn btn-warning btn-sm">
-                                                                ยกเลิกการจอง
-                                                            </a>
-                                                            <a href="{{ route('sale_areas.edit', $sale_area->id) }}"
                                                                 class="btn btn-primary btn-sm">
                                                                 แก้ไข
                                                             </a>
@@ -79,9 +75,9 @@
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
+                                                                    onclick="return confirm('คุณต้องการยกเลิกการจองผู้ใช้งานหรือไม่ ?')"
                                                                     class="btn btn-danger btn-sm">
-                                                                    ลบ
+                                                                    ยกเลิกการจอง
                                                                 </button>
                                                             </form>
                                                         </td>

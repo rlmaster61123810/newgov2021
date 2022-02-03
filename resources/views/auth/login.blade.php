@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="{{ asset('admin/custom.css') }}" rel="stylesheet">
 
 </head>
 
@@ -29,14 +30,14 @@
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-12 col-lg-12 col-md-12">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image-2"></div>
+                            <div class="col-lg-6 minheight-250px">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">ยินดีต้อนรับเข้าสู่ระบบ</h1>
@@ -85,6 +86,10 @@
                                     <div class="text-center">
                                         <a class="small" href="register.html">สร้างบัญชีใหม่</a>
                                     </div> --}}
+                                    {{-- inset logo --}}
+                                    <div class="text-center">
+                                        <img src="{{ asset('images/cm.png') }}" alt="logo" width="100px">
+                                    </div>
                                 </div>
                             </div>
                         </div>

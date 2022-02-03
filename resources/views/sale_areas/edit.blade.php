@@ -53,7 +53,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">สร้างพื้นที่ขาย</button>
+                        <button type="submit" class="btn btn-primary">แก้ไขข้อมูลพื้นที่ขาย</button>
                     </form>
                 </div>
             </div>

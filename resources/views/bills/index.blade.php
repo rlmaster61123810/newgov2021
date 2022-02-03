@@ -76,8 +76,6 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('bills.show', $bill->id) }}"
-                                                                class="btn btn-sm btn-info">ดูข้อมูล</a>
                                                             <a href="{{ route('bills.edit', $bill->id) }}"
                                                                 class="btn btn-sm btn-warning">แก้ไข</a>
                                                             <form action="{{ route('bills.destroy', $bill->id) }}"

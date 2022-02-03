@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">แก้ไขแบบตอบรับ</h5>
+                    <h5 class="card-title">แสดงแบบตอบรับ</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('forms.show', $form->id) }}" method="POST" enctype="multipart/form-data">
