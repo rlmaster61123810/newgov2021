@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าแรก</a></li>
-                <li class="breadcrumb-item active" aria-current="page">ใบคำร้องขอพื้นที่</li>
+                <li class="breadcrumb-item active" aria-current="page">ใบคำร้องขอรับรองผู้ประกอบการ</li>
             </ol>
         </nav>
         <div class="container">
@@ -12,9 +12,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>ใบคำร้องขอพื้นที่
+                            <h3>ใบคำร้องขอรับรองผู้ประกอบการ
                                 <a href="{{ route('applications.create') }}"
-                                    class="btn btn-primary float-right">เพิ่มผู้ใบคำร้องขอพื้นที่
+                                    class="btn btn-primary float-right">เพิ่มใบคำร้องขอรับรองผู้ประกอบการ
                                 </a>
                             </h3>
                         </div>

@@ -25,14 +25,14 @@
         href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sarabun:wght@100;400&display=swap"
         rel="stylesheet">
 
-        @yield('css')
+    @yield('css')
 
-<style>
-    body{
-        font-family: 'Sarabun', sans-serif;
-    }
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
 
-</style>
+    </style>
 
 </head>
 
@@ -47,9 +47,10 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon ">
-                    <i class="fas fa-house-user"></i>
+                    <img src="{{ asset('images/cm.png') }}" alt="logo" width="50px">
+                    {{-- <i class="fas fa-house-user"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3">C.S.S.D.CM </div>
+                <div class="sidebar-brand-text mx-3">ADMIN Panel</div>
             </a>
 
             <!-- Divider -->
@@ -198,6 +199,8 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+                    <h3>ระบบงานส่งเสริมอาชีพพัฒนาชุมชนเทศบาลนครเชียงใหม่</h3>
+
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -220,8 +223,8 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
                         @guest
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -240,7 +243,7 @@
                                     {{-- logout form --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                    document.getElementById('logout-form').submit();">
+                                                                                                                                document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Logout') }}
                                     </a>

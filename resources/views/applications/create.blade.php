@@ -33,7 +33,15 @@
                                 <label class="form-check-label" for="has_idcard">
                                     มีบัตรประชาชน
                                 </label>
+                                <br>
+                                <span class="text-danger">
+                                    <small>
+                                        *กรุณาเลือกว่ามีสำเนาบัตรประชาชนหรือไม่ก่อนบันทึก
+                                    </small>
+                                </span>
                             </div>
+                            {{-- comment --}}
+
                         </div>
 
                         <div class="form-group">
@@ -51,6 +59,12 @@
                                 <label class="form-check-label" for="has_house_registration">
                                     มี
                                 </label>
+                                <br>
+                                <span class="text-danger">
+                                    <small>
+                                        *กรุณาเลือกว่ามีสำเนาทะเบียนบ้านหรือไม่ก่อนบันทึก
+                                    </small>
+                                </span>
                             </div>
                         </div>
                         {{-- has_document check box if have = 0 nothave = 1 --}}
@@ -69,6 +83,12 @@
                                 <label class="form-check-label" for="has_document">
                                     มีเอกสารประกอบ
                                 </label>
+                                <br>
+                                <span class="text-danger">
+                                    <small>
+                                        *กรุณาเลือกว่ามีเอกสารประกอบหรือไม่ก่อนบันทึก
+                                    </small>
+                                </span>
                             </div>
                         </div>
                         <h4>รายละเอียดผู้สมัคร</h4>
