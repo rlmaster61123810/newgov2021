@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class FormController extends Controller
 {
@@ -16,6 +19,13 @@ class FormController extends Controller
     {
         $forms = Form::all();
         return view('forms.index', compact('forms'));
+    }
+    //export xlsx
+    public function export()
+    {
+        $forms = Form::all();
+
+        return Excel::download(new \App\Exports\FormsExport($forms), 'forms.xlsx');
     }
     // create
     public function create()

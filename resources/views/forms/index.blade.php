@@ -14,7 +14,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>แบบตอบรับโครงการ
-                                <a href="{{ route('forms.create') }}" class="btn btn-primary float-right">เพิ่มแบบตอบรับโครงการ
+                                <a href="{{ route('forms.create') }}"
+                                    class="btn btn-primary float-right">เพิ่มแบบตอบรับโครงการ
                                 </a>
                             </h3>
                         </div>
@@ -30,6 +31,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
+                                        {{-- export xslx --}}
+                                        <div class="text-right">
+                                            <form action="{{ route('forms.export') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-file-excel"></i>
+                                                    ส่งออกไฟล์ Excel
+                                                </button>
+                                            </form>
+                                        </div>
                                         <table class="table table-striped table-hover ">
                                             <thead class=" text-primary">
                                                 <tr>

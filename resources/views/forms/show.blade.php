@@ -14,7 +14,7 @@
                     <h5 class="card-title">แสดงแบบตอบรับ</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('forms.show', $form->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('forms.show', $form->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

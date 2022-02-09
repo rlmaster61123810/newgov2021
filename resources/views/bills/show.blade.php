@@ -19,7 +19,7 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="">ชื่อ</label>
+                            <label for="">ชื่อรายการชำระเงิน</label>
                             <input type="text" class="form-control" name="name" value="{{ $bill->name }}"
                                 id="inputName" disabled="name">
                             @error('name')

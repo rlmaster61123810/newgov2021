@@ -38,6 +38,7 @@
                                                     ส่งออกไฟล์ Excel
                                                 </button>
                                             </form>
+                                        </div>
                                         <table class="table table-striped table-hover ">
                                             <thead class=" text-primary">
                                                 <tr>
@@ -95,7 +96,6 @@
                                                                 onclick="return confirm('คุณต้องการลบผู้ใช้งานหรือไม่ ?')"
                                                                     class="btn btn-sm btn-danger">ลบ</button>
                                                             </form>
-
                                                         </td>
                                                     </tr>
                                                 @endforeach

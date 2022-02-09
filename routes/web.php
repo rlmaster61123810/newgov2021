@@ -124,6 +124,8 @@ Route::get('/forms/{form}', [App\Http\Controllers\FormController::class, 'show']
 Route::get('/forms/{form}/edit', [App\Http\Controllers\FormController::class, 'edit'])->name('forms.edit');
 Route::put('/forms/{form}', [App\Http\Controllers\FormController::class, 'update'])->name('forms.update');
 Route::delete('/forms/{form}', [App\Http\Controllers\FormController::class, 'destroy'])->name('forms.destroy');
+// export
+Route::post('/forms/export', [App\Http\Controllers\FormController::class, 'export'])->name('forms.export');
 
 // bills
 Route::get('/bills', [App\Http\Controllers\BillController::class, 'index'])->name('bills.index');

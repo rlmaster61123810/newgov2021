@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-        <link href="{{ asset('admin/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/custom.css') }}" rel="stylesheet">
 
 </head>
 
@@ -36,35 +36,39 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image-2"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image-2">
+                            </div>
                             <div class="col-lg-6 minheight-250px">
                                 <div class="p-5">
                                     <div class="text-center">
+                                        <img src="{{ asset('images/cm.png') }}" alt="logo" width="100px">
                                         <h1 class="h4 text-gray-900 mb-4">ยินดีต้อนรับเข้าสู่ระบบ</h1>
                                     </div>
 
                                     <form class="user" action="{{ route('login') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                                            <input type="email"
+                                                class="form-control form-control-user @error('email') is-invalid @enderror"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="email" value="{{ old('email') }}"
-                                                required autocomplete="email" autofocus>
+                                                placeholder="Enter Email Address..." name="email"
+                                                value="{{ old('email') }}" required autocomplete="email" autofocus>
                                             @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             {{-- input password with has error --}}
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                                            <input type="password"
+                                                class="form-control form-control-user @error('password') is-invalid @enderror"
                                                 id="exampleInputPassword" placeholder="Password" name="password"
                                                 required autocomplete="current-password">
                                             @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -74,7 +78,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-success btn-user btn-block">
                                             Login
                                         </button>
 
@@ -87,9 +91,7 @@
                                         <a class="small" href="register.html">สร้างบัญชีใหม่</a>
                                     </div> --}}
                                     {{-- inset logo --}}
-                                    <div class="text-center">
-                                        <img src="{{ asset('images/cm.png') }}" alt="logo" width="100px">
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
